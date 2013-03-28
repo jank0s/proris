@@ -1,4 +1,4 @@
 Proris
 ======
 
-**Proris** je spletna aplikacija za obdelavo odprtih podatkov o proraèunu Republike Slovenije, ki bo omogoèala oblaèno analitiko javno objavljenih podatkov o prihodkih in odhodkih drave zlasti z namenom vizualizacije teh podatkov na privlaèen naèin s pomoèjo HTML5 grafov.
+**Proris** je spletna aplikacija za obdelavo odprtih podatkov o proraÄunu Republike Slovenije, ki bo omogoÄala oblaÄno analitiko javno objavljenih podatkov o prihodkih in odhodkih drÅ¾ave zlasti z namenom vizualizacije teh podatkov na privlaÄen naÄin s pomoÄjo HTML5 grafov.
