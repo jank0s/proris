@@ -42,6 +42,15 @@ Thumbs.db
 ###########
 /.idea
 
+# XCode #
+#########
+*.xcodeproj
+
 # Python #
 ##########
 *.py[co]
+
+# Eclipse #
+###########
+.project
+.pydevproject
