@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from webapp.forms import DataInput
 from django.template import RequestContext
 from django.http import HttpResponse
-import sys
 
 
 @staff_member_required
@@ -11,7 +10,6 @@ def importcsv(request):
     if request.method == "POST":
         form = DataInput(request.POST, request.FILES)
         if form.is_valid():
-            print >>sys.stderr, 'a'
             form.save()
             return HttpResponse("Saved")
         else:
