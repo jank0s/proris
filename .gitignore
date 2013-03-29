@@ -49,3 +49,8 @@ Thumbs.db
 # Python #
 ##########
 *.py[co]
+
+# Eclipse #
+###########
+.project
+.pydevproject
