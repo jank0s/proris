@@ -8,7 +8,6 @@ class Balance(models.Model):
         verbose_name_plural = "        Balances"
 
 class Group(models.Model):
-    balance = models.ForeignKey(Balance)
     name = models.CharField(max_length=200)
     def __unicode__(self):
         return self.name
@@ -32,7 +31,6 @@ class BudgetUser(models.Model):
         verbose_name_plural = "     Budget Users"
 
 class PoliticalBranch(models.Model):
-    budget_user = models.ForeignKey(BudgetUser)
     name = models.CharField(max_length=200)
     def __unicode__(self):
         return self.name  
@@ -40,7 +38,6 @@ class PoliticalBranch(models.Model):
         verbose_name_plural = "    Political Branches"
 
 class Programme(models.Model):
-    political_branch = models.ForeignKey(PoliticalBranch)
     name = models.CharField(max_length=200)
     def __unicode__(self):
         return self.name 
@@ -48,6 +45,9 @@ class Programme(models.Model):
         verbose_name_plural = "   Programmes"
 
 class Category(models.Model):
+    balance = models.ForeignKey(Balance)
+    budget_user = models.ForeignKey(BudgetUser)
+    political_branch = models.ForeignKey(PoliticalBranch)
     programme = models.ForeignKey(Programme)
     name = models.CharField(max_length=200)
     def __unicode__(self):
