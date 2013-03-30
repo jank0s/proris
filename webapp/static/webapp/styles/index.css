@@ -1,6 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
+body, div, h1, h2, h3, h4, h5, h6, p, ul, img {margin:0px; padding:0px; }
 
 body{
     background: #D8D8D8;
@@ -17,4 +18,16 @@ body{
     padding-bottom: 2em;
     -webkit-box-shadow: 5px 5px 20px #606060 ;
     -webkit-border-radius: 3px;
+}
+
+#content #top {
+    text-shadow: #fff 1px 1px 3px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
+    border-bottom: 1px solid #eee;
+}
+
+#visual {
+    border:2px solid;
+    border-color: #D8D8D8;
+    height: 350px;
 }

@@ -14,15 +14,29 @@
             </div><!-- end header-->
 			
             <div id="content">
-				{% if branch_list %}
-					<ul>
-					{% for br in branch_list %}
-						<li>{{ br.name }}</li>
-					{% endfor %}
-					</ul>
-				{% else %}
-					<p>No polls political branches available.</p>
-				{% endif %}
+                <div id="top">
+                    <h3>Path->To->View</h3>
+                </div>
+                <h2>Naslov</h2>
+                <div id="visual">
+                    <p>Data visualisation (AJAX, HTML5, Javascript) - TODO</p>
+                </div>
+                <table>
+                        <tr>
+                            <th>Naslov</th>
+                            <th>Izdatek</th>
+                        </tr>
+                    {% if branch_list %}
+
+                        {% for br in branch_list %}
+                            <tr>
+                                <td>{{ br.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <p>No polls political branches available.</p>
+                    {% endif %}
+                </table>
             </div><!-- end content-->
                 
             <div id="footer">
