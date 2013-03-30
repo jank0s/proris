@@ -21,24 +21,24 @@
                 <div id="visual">
                     <p>Data visualisation (AJAX, HTML5, Javascript) - TODO</p>
                 </div>
-                <table>
-                        <tr>
-                            <th>Naslov</th>
-                            <th>Izdatek</th>
-                            <th>Delež</th>
-                        </tr>
-                    {% if branch_list %}
-                        {% for br in branch_list %}
+                {% if branch_list %}
+                    <table>
                             <tr>
-                                <td>{{ br.name }}</td>
-                                <td>{{ br.sum }}</td>
-                                <td> 0.00% </td>
+                                <th>Postavka</th>
+                                <th width="15%">Izdatek</th>
+                                <th width="10%">Delež</th>
                             </tr>
-                        {% endfor %}
-                    {% else %}
-                        <p>No polls political branches available.</p>
-                    {% endif %}
-                </table>
+                            {% for br in branch_list %}
+                                <tr>
+                                    <td>{{ br.name }}</td>
+                                    <td>{{ br.sum }}</td>
+                                    <td> 0.00% </td>
+                                </tr>
+                            {% endfor %}
+                    </table>
+                {% else %}
+                    <p>No political branches available.</p>
+                {% endif %}
             </div><!-- end content-->
                 
             <div id="footer">

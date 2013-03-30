@@ -31,6 +31,7 @@ def importcsv(request):
 
 
 def index(request):
-    branch_list = PoliticalBranch.objects.annotate(sum=Sum('category__item__value')).values('name', 'sum')
+    year=2013;
+    branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(sum=Sum('category__item__value')).values('name', 'sum')
     context = {'branch_list': branch_list}
     return render(request, 'webapp/index.html', context)
