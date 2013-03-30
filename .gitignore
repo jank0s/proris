@@ -54,3 +54,4 @@ Thumbs.db
 ###########
 .project
 .pydevproject
+/.settings

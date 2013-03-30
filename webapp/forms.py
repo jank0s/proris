@@ -3,7 +3,7 @@ from webapp.models import Balance, Group, BudgetUserGroup, BudgetUser, Political
 import csv
 
 class DataInput(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(help_text="*File must be encoded in UTF-8 format")
     year = forms.IntegerField()
     
     def save(self):
