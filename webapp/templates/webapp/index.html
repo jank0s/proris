@@ -3,7 +3,8 @@
 	<head>
         <meta charset="utf-8">
         <title>Proris</title>
-    <link href="" rel="stylesheet" type="text/css">
+        {% load staticfiles %}
+        <link href="{% static "webapp/styles/index.css" %}" rel="stylesheet" type="text/css">
 	</head>
     
     <body>
@@ -13,8 +14,6 @@
             </div><!-- end header-->
 			
             <div id="content">
-                {% load staticfiles %}
-                    <img src="{% static "webapp/test.png" %}" alt="Test img" />
 				{% if branch_list %}
 					<ul>
 					{% for br in branch_list %}
