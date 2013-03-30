@@ -31,8 +31,8 @@
                             {% for br in branch_list %}
                                 <tr>
                                     <td>{{ br.name }}</td>
-                                    <td>{{ br.sum }}</td>
-                                    <td> 0.00% </td>
+                                    <td>{{ br.branch_sum|floatformat:"0" }} €</td>
+                                    <td>{{ br.percent|floatformat:"2" }} %</td>
                                 </tr>
                             {% endfor %}
                     </table>

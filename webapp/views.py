@@ -32,6 +32,9 @@ def importcsv(request):
 
 def index(request):
     year=2013;
-    branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(sum=Sum('category__item__value')).values('name', 'sum')
+    sum=Item.objects.filter(budget_year="2013").aggregate(s=Sum('value'))['s']
+    branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(branch_sum=Sum('category__item__value')).values('name', 'branch_sum').order_by('-branch_sum')
+    branch_list = [{'name': br['name'], 'branch_sum': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
+        for br in branch_list]
     context = {'branch_list': branch_list}
     return render(request, 'webapp/index.html', context)
