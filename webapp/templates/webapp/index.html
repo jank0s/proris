@@ -13,6 +13,8 @@
             </div><!-- end header-->
 			
             <div id="content">
+                {% load staticfiles %}
+                    <img src="{% static "webapp/test.png" %}" alt="Test img" />
 				{% if branch_list %}
 					<ul>
 					{% for br in branch_list %}
@@ -20,12 +22,13 @@
 					{% endfor %}
 					</ul>
 				{% else %}
-					<p>No polls politacl branches available.</p>
+					<p>No polls political branches available.</p>
 				{% endif %}
             </div><!-- end content-->
                 
             <div id="footer">
 			
             </div><!-- end footer-->
+        </div>
     </body>
 </html>
