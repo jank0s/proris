@@ -4,45 +4,91 @@ import csv
 
 class DataInput(forms.Form):
     file = forms.FileField()
+    year = forms.IntegerField()
     
     def save(self):
         records = csv.reader(self.cleaned_data["file"], delimiter=';')
          
-        for line in records:     
-            if not Balance.objects.filter(name=line[1]).exists():
-                idata = Balance()
-                idata.name = line[1]
-                idata.save()
-            key = Balance.objects.filter(name=line[1]).get().pk
-                
-            if not Group.objects.filter(name=line[3]).filter(balance=key).exists():
-                idata = Balance.objects.get(pk=key)
-                idata.group_set.create(name=line[3])
-            key = Group.objects.filter(name=line[3]).filter(balance=key).get().pk
-                
-            if not BudgetUserGroup.objects.filter(name=line[5]).filter(group=key).exists():
-                idata = Group.objects.get(pk=key)
-                idata.budgetusergroup_set.create(name=line[5])
-            key = BudgetUserGroup.objects.filter(name=line[5]).filter(group=key).get().pk
-                
-            if not BudgetUser.objects.filter(name=line[7]).filter(group=key).exists():
-                idata = BudgetUserGroup.objects.get(pk=key)
-                idata.budgetuser_set.create(name=line[7])
-            key = BudgetUser.objects.filter(name=line[7]).filter(group=key).get().pk    
-                
-            if not PoliticalBranch.objects.filter(name=line[9]).filter(budget_user=key).exists():
-                idata = BudgetUser.objects.get(pk=key)
-                idata.politicalbranch_set.create(name=line[9])
-            key = PoliticalBranch.objects.filter(name=line[9]).filter(budget_user=key).get().pk
+        for line in records:
+            if line[1] == "BLC_NAME":
+                continue
             
-            if not Programme.objects.filter(name=line[11]).filter(political_branch=key).exists():
-                idata = PoliticalBranch.objects.get(pk=key)
-                idata.programme_set.create(name=line[11])
-            key = Programme.objects.filter(name=line[11]).filter(political_branch=key).get().pk
-            
-            if not Category.objects.filter(name=line[13]).filter(programme=key).exists():
-                idata = Programme.objects.get(pk=key)
-                idata.category_set.create(name=line[13])
-            key = Category.objects.filter(name=line[13]).filter(programme=key).get().pk
-            
+            balance = Balance.objects.filter(name=line[1])
+            if not balance.exists():
+                balance = Balance()
+                balance.name = line[1]
+                balance.save()
+            else:
+                balance = balance.get()
+               
+               
+            group = Group.objects.filter(name=line[3])
+            if not group.exists():
+                group = Group()
+                group.name = line[3]
+                group.save()
+            else:
+                group = group.get()
                 
+                
+            budget_user_group = BudgetUserGroup.objects.filter(name=line[5],group=group.pk)
+            if not budget_user_group.exists():
+                budget_user_group = BudgetUserGroup()
+                budget_user_group.group = group
+                budget_user_group.name = line[5]
+                budget_user_group.save()
+            else:
+                budget_user_group = budget_user_group.get()
+                
+                
+            budget_user = BudgetUser.objects.filter(name=line[7],group=budget_user_group.pk)
+            if not budget_user.exists():
+                budget_user = BudgetUser()
+                budget_user.group = budget_user_group
+                budget_user.name = line[7]
+                budget_user.save()
+            else:
+                budget_user = budget_user.get()
+            
+            
+            political_branch = PoliticalBranch.objects.filter(name=line[9])
+            if not political_branch.exists():
+                political_branch = PoliticalBranch()
+                political_branch.name = line[9]
+                political_branch.save()
+            else:
+                political_branch = political_branch.get()
+                
+                
+            programme = Programme.objects.filter(name=line[11])
+            if not programme.exists():
+                programme = Programme()
+                programme.name = line[11]
+                programme.save()
+            else:
+                programme = programme.get()
+            
+            
+            category = Category.objects.filter(name=line[13], balance=balance.pk, budget_user=budget_user.pk, political_branch=political_branch.pk, programme=programme.pk)
+            if not category.exists():
+                category = Category()
+                category.balance = balance
+                category.budget_user = budget_user
+                category.political_branch = political_branch
+                category.programme = programme
+                category.name = line[13]
+                category.save()
+            else:
+                category = category.get()
+            
+            
+            item = Item.objects.filter(category=category.pk, budget_year = self.cleaned_data["year"])
+            if not item.exists():
+                item = Item()
+                item.category = category
+                item.budget_year = self.cleaned_data["year"]
+                item.value = float(line[14].replace(",","."))
+                item.save()
+            else:
+                item = item.get()
+                        
