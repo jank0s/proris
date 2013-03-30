@@ -60,6 +60,6 @@ class Item(models.Model):
     budget_year = models.IntegerField()
     value = models.FloatField()
     def __unicode__(self):
-        return self.category + "(" + self.budget_year + ")" + self.value
+        return self.category.name + " (" + self.budget_year.__str__() + ") "
     class Meta:
         verbose_name_plural = "Items"
