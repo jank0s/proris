@@ -15,30 +15,12 @@
 			
             <div id="content">
                 <div id="top">
-                    <h3>Path->To->View</h3>
+                    <h3>Razdelitev</h3>
                 </div>
-                <h2>Naslov</h2>
-                <div id="visual">
-                    <p>Data visualisation (AJAX, HTML5, Javascript) - TODO</p>
-                </div>
-                {% if branch_list %}
-                    <table>
-                            <tr>
-                                <th>Postavka</th>
-                                <th width="15%">Izdatek</th>
-                                <th width="10%">Delež</th>
-                            </tr>
-                            {% for br in branch_list %}
-                                <tr>
-                                    <td>{{ br.name }}</td>
-                                    <td>{{ br.branch_sum|floatformat:"0" }} €</td>
-                                    <td>{{ br.percent|floatformat:"2" }} %</td>
-                                </tr>
-                            {% endfor %}
-                    </table>
-                {% else %}
-                    <p>No political branches available.</p>
-                {% endif %}
+                <ul>
+                    <li><a href="pb/2013">Kategorije</a></li>
+                    <li><a href="bug/2013">Proračunski uporabniki</a></li>
+                </ul>
             </div><!-- end content-->
                 
             <div id="footer">
