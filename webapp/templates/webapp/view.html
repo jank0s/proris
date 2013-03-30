@@ -21,23 +21,23 @@
                 <div id="visual">
                     <p>Data visualisation (AJAX, HTML5, Javascript) - TODO</p>
                 </div>
-                {% if branch_list %}
+                {% if list %}
                     <table>
                             <tr>
                                 <th>Postavka</th>
                                 <th width="15%">Izdatek</th>
                                 <th width="10%">Delež</th>
                             </tr>
-                            {% for br in branch_list %}
+                            {% for br in list %}
                                 <tr>
-                                    <td>{{ br.name }}</td>
-                                    <td>{{ br.branch_sum|floatformat:"0" }} €</td>
+                                    <td><a href="{{ br.id }}">{{ br.name }}</a></td>
+                                    <td>{{ br.value|floatformat:"0" }} €</td>
                                     <td>{{ br.percent|floatformat:"2" }} %</td>
                                 </tr>
                             {% endfor %}
                     </table>
                 {% else %}
-                    <p>No political branches available.</p>
+                    <p>No data available.</p>
                 {% endif %}
             </div><!-- end content-->
                 
