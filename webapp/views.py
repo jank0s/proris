@@ -18,7 +18,7 @@ def importcsv(request):
     else:
         form = DataInput()
         context = {"form": form}
-        return render_to_response("imported.html", context,
+        return render_to_response("import_csv.html", context,
         context_instance=RequestContext(request))
 
 def index(request):
