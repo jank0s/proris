@@ -31,3 +31,8 @@ body{
     border-color: #D8D8D8;
     height: 350px;
 }
+
+#content table
+{
+    width:100%;
+}
