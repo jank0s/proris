@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.contrib import messages
 from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
+from django.db.models import Avg, Max, Min, Count, Sum
 
 
 @staff_member_required
@@ -30,6 +31,6 @@ def importcsv(request):
 
 
 def index(request):
-    branch_list = PoliticalBranch.objects.all()
+    branch_list = PoliticalBranch.objects.annotate(sum=Sum('category__item__value')).values('name', 'sum')
     context = {'branch_list': branch_list}
     return render(request, 'webapp/index.html', context)
