@@ -54,8 +54,8 @@ def pb(request, year):
 def pb_item(request, year, pb_id):
     header="Kategorije"
     sum=Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).aggregate(s=Sum('value'))['s']
-    item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).values('id', 'category__name', 'value').order_by('-value')
-    list = [{'id': "", 'name': item['category__name'], 'value': item['value'], 'percent': item['value']/sum*100}
+    item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).values('category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
+    list = [{'id': "", 'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100}
         for item in item_list]
     context = {'list': list, 'path': PoliticalBranch.objects.get(pk=pb_id).name, 'header': PoliticalBranch.objects.get(pk=pb_id).name}
     return render(request, 'webapp/view.html', context)
