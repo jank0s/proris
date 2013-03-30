@@ -1,5 +1,5 @@
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from webapp.forms import DataInput
 from django.template import RequestContext
 from django.http import HttpResponse
@@ -22,6 +22,6 @@ def importcsv(request):
         context_instance=RequestContext(request))
 
 def index(request):
-    latest_poll_list = PoliticalBranch.objects.all()
-    output = '</br>'.join([p.name for p in latest_poll_list])
-    return HttpResponse(output)
+    branch_list = PoliticalBranch.objects.all()
+    context = {'branch_list': branch_list}
+    return render(request, 'webapp/index.html', context)

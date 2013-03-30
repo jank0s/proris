@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>Proris</title>
+    <link href="" rel="stylesheet" type="text/css">
+	</head>
+    
+    <body>
+    	<div class="container">
+        	<div id="header" >
+            	<h1>Proris</h1>
+            </div><!-- end header-->
+			
+            <div id="content">
+				{% if branch_list %}
+					<ul>
+					{% for br in branch_list %}
+						<li>{{ br.name }}</li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<p>No polls politacl branches available.</p>
+				{% endif %}
+            </div><!-- end content-->
+                
+            <div id="footer">
+			
+            </div><!-- end footer-->
+    </body>
+</html>
