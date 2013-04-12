@@ -31,23 +31,20 @@ def importcsv(request):
 
 
 def index(request):
-    year=2013;
-    path="Kategorije"
-    header="Kategorije"
-    sum=Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
-    branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(branch_sum=Sum('category__item__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
-    branch_list = [{'id': br['id'], 'name': br['name'], 'branch_sum': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
-        for br in branch_list]
-    context = {'branch_list': branch_list, 'path': path, 'header': header}
+    context = {}
     return render(request, 'webapp/index.html', context)
 
 def pb(request, year):
     path="Kategorije"
     header="Kategorije"
+    #calculate sum
     sum=Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
+    #query
     branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(branch_sum=Sum('category__item__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
+    #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
                    for br in branch_list]
+    #prepare view context
     context = {'list': list, 'path': path, 'header': header}
     return render(request, 'webapp/view.html', context)
 
