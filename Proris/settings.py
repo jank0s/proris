@@ -102,10 +102,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'Proris.urls'
+ROOT_URLCONF = 'proris.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'Proris.wsgi.application'
+WSGI_APPLICATION = 'proris.wsgi.application'
 
 TEMPLATE_DIRS = (
     "templates"
