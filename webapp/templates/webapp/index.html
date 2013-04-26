@@ -1,11 +1,9 @@
 {% extends "webapp/base.html" %}
 
+{% block html_attributes %}ng-app="proris"{% endblock %}
+{% block body_attributes %}ng-controller=""{% endblock %}
+
+
 {% block content %}
-    <div id="top">
-        <h3>Razdelitev</h3>
-    </div>
-    <ul>
-        <li><a href="pb/2013">Kategorije</a></li>
-        <li><a href="bug/2013">Skupine proračunskih uporabnikov</a></li>
-    </ul>
+    <div ng-view></div>
 {% endblock %}

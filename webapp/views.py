@@ -31,8 +31,7 @@ def importcsv(request):
 
 
 def index(request):
-    context = {}
-    return render(request, 'webapp/index.html', context)
+    return render(request, 'webapp/index.html')
 
 def pb(request, year):
     path="Kategorije"
