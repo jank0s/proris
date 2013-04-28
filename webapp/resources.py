@@ -2,12 +2,12 @@
 from tastypie.resources import ModelResource
 from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
 from tastypie import fields
+from django.db.models import Avg, Max, Min, Count, Sum
 
 class BalanceResource(ModelResource):
     class Meta:
         queryset = Balance.objects.all()
         resource_name = "balance"
-
 
 class GroupResource(ModelResource):
     class Meta:
@@ -27,10 +27,10 @@ class BudgetUserResource(ModelResource):
         resource_name = "bu"
 
 class PoliticalBranchResource(ModelResource):
-    class Meta:
+    class Meta:     
         queryset = PoliticalBranch.objects.all()
         resource_name = "pb"
-
+        
 class ProgrammeResource(ModelResource):
     class Meta:
         queryset = Programme.objects.all()

@@ -1,3 +1,7 @@
 function PBCtrl($scope, PB) {
-    $scope.pb = PB.query();
+    $scope.its = PB.query();
+}
+
+function BUGCtrl($scope, BUG) {
+	$scope.its = BUG.query();
 }
