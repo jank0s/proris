@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
 from django.db.models import Avg, Max, Min, Count, Sum
-
+from django.utils import simplejson
 
 @staff_member_required
 def importcsv(request):
@@ -39,13 +39,15 @@ def pb(request, year):
     #calculate sum
     sum=Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
     #query
-    branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(branch_sum=Sum('category__item__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
+    branch_list = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=year).annotate(branch_sum=Sum('categories__items__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
                    for br in branch_list]
     #prepare view context
-    context = {'list': list, 'path': path, 'header': header}
-    return render(request, 'webapp/view.html', context)
+    #context = {'list': list, 'path': path, 'header': header}
+    #return render(request, 'webapp/view.html', context)
+    data = simplejson.dumps(list)
+    return HttpResponse(data, mimetype='application/json')
 
 def pb_item(request, year, pb_id):
     header="Kategorije"

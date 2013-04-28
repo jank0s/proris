@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from tastypie.api import Api
-from webapp.resources import BalanceResource, GroupResource, BudgerUserGroupResource, BudgetUserResource, PoliticalBranchResource, ProgrammeResource, CategoryResource, ItemResource
+from webapp.resources import BalanceResource, GroupResource, BudgerUserGroupResource, BudgetUserResource, PoliticalBranchResource, ProgrammeResource, CategoryResource, ItemResource, TestResource
 from webapp import views
 
 v1_api = Api(api_name='v1')
@@ -13,6 +13,7 @@ v1_api.register(PoliticalBranchResource())
 v1_api.register(ProgrammeResource())
 v1_api.register(CategoryResource())
 v1_api.register(ItemResource())
+v1_api.register(TestResource())
 
 urlpatterns = patterns('',
                        url(r'^api/', include(v1_api.urls)),

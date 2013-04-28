@@ -44,7 +44,11 @@ class PoliticalBranchResource(ModelResource):
         filtering = {
             'categories': ALL_WITH_RELATIONS,
             }
-        
+        excludes = [ 'categories' ]
+
+    def get_object_list(self, request):
+        return super(PoliticalBranchResource, self).get_object_list(request).annotate(branch_sum=Sum('categories__items__value'))
+
 class ProgrammeResource(ModelResource):
     categories = fields.ToManyField('webapp.resources.CategoryResource', 'categories')
     class Meta:
@@ -76,3 +80,7 @@ class ItemResource(ModelResource):
             'budget_year': ALL,
             'category': ALL_WITH_RELATIONS,
             }
+
+class TestResource(ModelResource):
+    class Meta:
+        queryset = Item.objects.all()
