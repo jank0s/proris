@@ -1,7 +1,10 @@
 from django.conf.urls import patterns, include, url
 
 from tastypie.api import Api
-from webapp.resources import BalanceResource, GroupResource, BudgerUserGroupResource, BudgetUserResource, PoliticalBranchResource, ProgrammeResource, CategoryResource, ItemResource
+from webapp.resources import BalanceResource, GroupResource
+from webapp.resources import BudgerUserGroupResource, BudgetUserResource
+from webapp.resources import PoliticalBranchResource, ProgrammeResource
+from webapp.resources import CategoryResource, ItemResource
 from webapp import views
 
 v1_api = Api(api_name='v1')
@@ -17,7 +20,7 @@ v1_api.register(ItemResource())
 urlpatterns = patterns('',
                        url(r'^api/', include(v1_api.urls)),
                        url(r'^$', views.index, name='index'),
-                       
+
                        url(r'^pb/(?P<year>\d+)/$', views.pb, name='pb'),
                        url(r'^pb/(?P<year>\d+)/(?P<pb_id>\d+)/$', views.pb_item, name='pb_item'),
                        url(r'^bug/(?P<year>\d+)/$', views.bug, name='bug'),
