@@ -7,6 +7,7 @@ App.directive('piechart', function() {
 		           series: {
 				        pie: {
 				            show: true,
+				            radius: 1000,
 				            label: {
 				            	show: false
 				            }
