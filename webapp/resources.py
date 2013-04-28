@@ -2,6 +2,7 @@
 from tastypie.resources import ModelResource
 from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
 from tastypie import fields
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 class BalanceResource(ModelResource):
     class Meta:
@@ -47,6 +48,9 @@ class CategoryResource(ModelResource):
 
 class ItemResource(ModelResource):
     category = fields.ForeignKey(CategoryResource, 'category')
+    filtering = {
+        "budget_year": ALL,
+        }
     class Meta:
         queryset = Item.objects.all()
         resource_name = "item"
