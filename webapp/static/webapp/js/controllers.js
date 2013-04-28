@@ -1,3 +1,3 @@
-function BudgetPBCtrl($scope) {
+function PBCtrl($scope, PB) {
     $scope.pb = PB.query();
 }

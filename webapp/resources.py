@@ -1,19 +1,52 @@
 # webapp/api.py
 from tastypie.resources import ModelResource
 from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
-from django.db.models import Avg, Max, Min, Count, Sum
+from tastypie import fields
 
-
-class PBResource(ModelResource):
+class BalanceResource(ModelResource):
     class Meta:
-        #calculate sum
-        year=2013
-        sum=Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
-        #query
-        branch_list = PoliticalBranch.objects.values('name').filter(category__item__budget_year=year).annotate(branch_sum=Sum('category__item__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
-        #calculate percentage
-        list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
-                for br in branch_list]
-        queryset = PoliticalBranch.objects.all()
-        resource_name = 'pb'
+        queryset = Balance.objects.all()
+        resource_name = "balance"
 
+
+class GroupResource(ModelResource):
+    class Meta:
+        queryset = Group.objects.all()
+        resource_name = "group"
+
+class BudgerUserGroupResource(ModelResource):
+    group = fields.ForeignKey(GroupResource, 'group')
+    class Meta:
+        queryset = BudgetUserGroup.objects.all()
+        resource_name = "bug"
+
+class BudgetUserResource(ModelResource):
+    group = fields.ForeignKey(BudgerUserGroupResource, 'group')
+    class Meta:
+        queryset = BudgetUserGroup.objects.all()
+        resource_name = "bu"
+
+class PoliticalBranchResource(ModelResource):
+    class Meta:
+        queryset = PoliticalBranch.objects.all()
+        resource_name = "pb"
+
+class ProgrammeResource(ModelResource):
+    class Meta:
+        queryset = Programme.objects.all()
+        resource_name = "programme"
+
+class CategoryResource(ModelResource):
+    balance = fields.ForeignKey(BalanceResource, 'balance')
+    budget_user = fields.ForeignKey(BudgetUserResource, 'budget_user')
+    political_branch = fields.ForeignKey(PoliticalBranchResource, 'political_branch')
+    programme = fields.ForeignKey(ProgrammeResource, 'programme')
+    class Meta:
+        queryset = Category.objects.all()
+        resource_name = "category"
+
+class ItemResource(ModelResource):
+    category = fields.ForeignKey(CategoryResource, 'category')
+    class Meta:
+        queryset = Item.objects.all()
+        resource_name = "item"
