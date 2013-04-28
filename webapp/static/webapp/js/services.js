@@ -3,7 +3,7 @@ var factories = angular.module('prorisServices', ['ngResource']);
   
 factories.factory('PB', function($resource, $routeParams){
         return $resource('api/v1/pb', {}, {
-            query: {method:'GET', params:{format:"json", year:$routeParams.year}, isArray:false}
+            query: {method:'GET', params:{format:"json", categories__items__budget_year:$routeParams.year}, isArray:false}
         });
     });
     
