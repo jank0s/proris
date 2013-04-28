@@ -24,3 +24,9 @@ factories.factory('BUGBu', function($resource){
             query: {method:'GET', isArray:false}
         });
     });
+    
+factories.factory('BUGBuItem', function($resource){
+        return $resource('api/v1/category/?format=json', {}, {
+            query: {method:'GET', isArray:false}
+        });
+    });

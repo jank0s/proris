@@ -12,6 +12,12 @@ function PBItemCtrl($scope, PBItem) {
 	$scope.its = PBItem.query();
 }
 
-function BUGBuCtrl($scope, BUGBu) {
+function BUGBuCtrl($scope, $routeParams, BUGBu) {
 	$scope.its = BUGBu.query();
+	$scope.year = $routeParams.year;
+	$scope.bugid = $routeParams.bugid;
+}
+
+function BUGBuItemCtrl($scope, BUGBuItem) {
+	$scope.its = BUGBuItem.query();
 }
