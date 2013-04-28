@@ -23,7 +23,7 @@ class BudgerUserGroupResource(ModelResource):
 class BudgetUserResource(ModelResource):
     group = fields.ForeignKey(BudgerUserGroupResource, 'group')
     class Meta:
-        queryset = BudgetUserGroup.objects.all()
+        queryset = BudgetUser.objects.all()
         resource_name = "bu"
 
 class PoliticalBranchResource(ModelResource):

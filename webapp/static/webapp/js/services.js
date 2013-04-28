@@ -18,3 +18,9 @@ factories.factory('PBItem', function($resource){
             query: {method:'GET', isArray:false}
         });
     });
+    
+factories.factory('BUGBu', function($resource){
+        return $resource('api/v1/bu/?format=json', {}, {
+            query: {method:'GET', isArray:false}
+        });
+    });
