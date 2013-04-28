@@ -3,4 +3,4 @@ angular.module('prorisServices', ['ngResource'])
         return $resource('api/v1/pb/?format=json', {}, {
             query: {method:'GET', isArray:false}
         });
-    })
+    });
