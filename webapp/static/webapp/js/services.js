@@ -12,3 +12,9 @@ factories.factory('BUG', function($resource){
             query: {method:'GET', isArray:false}
         });
     });
+
+factories.factory('PBItem', function($resource){
+        return $resource('api/v1/category/?format=json', {}, {
+            query: {method:'GET', isArray:false}
+        });
+    });
