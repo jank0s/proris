@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title>Proris</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'webapp/styles/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'webapp/styles/style.css' %}">
         <script src="{% static 'webapp/lib/jquery.js' %}"></script>
         <script src="{% static 'webapp/lib/angular.js' %}"></script>
@@ -12,7 +11,7 @@
         <script src="{% static 'webapp/js/controllers.js' %}"></script>
         <script src="{% static 'webapp/js/app.js' %}"></script>
     </head>
-    <body {% block body_attributes %}{% endblock %}>
+    <body>
         {% block content %}
         {% endblock %}
     </body>

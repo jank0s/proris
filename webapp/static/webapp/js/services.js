@@ -1,11 +1,6 @@
-angular.module('ipriServices', ['ngResource'])
-    .factory('Team', function($resource){
-        return $resource('api/v1/team/?format=json', {}, {
+angular.module('prorisServices', ['ngResource'])
+    .factory('PB', function($resource){
+        return $resource('api/v1/pb/?format=json', {}, {
             query: {method:'GET', isArray:false}
         });
     })
-    .factory('Student', function($resource){
-        return $resource('api/v1/student/?format=json', {}, {
-            query: {method:'GET', isArray:false}
-        });
-    });
