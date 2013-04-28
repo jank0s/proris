@@ -4,11 +4,11 @@ from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, Political
 from tastypie import fields
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
+
 class BalanceResource(ModelResource):
     class Meta:
         queryset = Balance.objects.all()
         resource_name = "balance"
-
 
 class GroupResource(ModelResource):
     class Meta:
@@ -24,14 +24,14 @@ class BudgerUserGroupResource(ModelResource):
 class BudgetUserResource(ModelResource):
     group = fields.ForeignKey(BudgerUserGroupResource, 'group')
     class Meta:
-        queryset = BudgetUserGroup.objects.all()
+        queryset = BudgetUser.objects.all()
         resource_name = "bu"
 
 class PoliticalBranchResource(ModelResource):
-    class Meta:
+    class Meta:     
         queryset = PoliticalBranch.objects.all()
         resource_name = "pb"
-
+        
 class ProgrammeResource(ModelResource):
     class Meta:
         queryset = Programme.objects.all()
