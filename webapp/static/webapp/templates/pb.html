@@ -11,9 +11,9 @@
         <th width="15%">Izdatek</th>
         <th width="10%">Delež</th>
     </tr>
-    <tr ng-repeat="branch in its.objects">
+    <tr ng-repeat="branch in its">
         <td><a href="#/pb/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
-        <td> {{ branch.branch_sum }} </td>
-        <td> TBD </td>
+        <td> {{ branch.value }} </td>
+        <td> {{ branch.percent }} </td>
     </tr>
 </table>
