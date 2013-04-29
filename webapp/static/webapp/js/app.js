@@ -1,5 +1,6 @@
-angular.module('proris', ['prorisServices']).
-    config(['$routeProvider', function($routeProvider) {
+var App = angular.module('proris', ['prorisServices']);
+
+App.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
             when('/pb/:year/:pbid', {templateUrl: 'static/webapp/templates/pb_item.html',   controller: PBItemCtrl}).
             when('/pb/:year', {templateUrl: 'static/webapp/templates/pb.html',   controller: PBCtrl}).
