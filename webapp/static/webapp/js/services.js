@@ -8,25 +8,25 @@ factories.factory('PB', function($resource, $routeParams){
     });
     
 factories.factory('BUG', function($resource, $routeParams){
-        return $resource('api/v1/bug', {}, {
-            query: {method:'GET', params:{format:"json", year:$routeParams.year}, isArray:false}
+        return $resource('bug/:year', {}, {
+            query: {method:'GET', params:{year:$routeParams.year}, isArray:false}
         });
     });
 
 factories.factory('PBItem', function($resource, $routeParams){
-        return $resource('api/v1/category', {}, {
-            query: {method:'GET', params:{format:"json", year:$routeParams.year, pbid:$routeParams.pbid},isArray:false}
+        return $resource('pb/:year/:pbid', {}, {
+            query: {method:'GET', params:{year:$routeParams.year, pbid:$routeParams.pbid},isArray:false}
         });
     });
     
 factories.factory('BUGBu', function($resource, $routeParams){
-        return $resource('api/v1/bu', {}, {
-            query: {method:'GET', params:{format:"json", year:$routeParams.year, bugid:$routeParams.bugid}, isArray:false}
+        return $resource('bug/:year/:bugid', {}, {
+            query: {method:'GET', params:{year:$routeParams.year, bugid:$routeParams.bugid}, isArray:false}
         });
     });
     
 factories.factory('BUGBuItem', function($resource, $routeParams){
-        return $resource('api/v1/category', {}, {
-            query: {method:'GET', params:{format:"json", year:$routeParams.year, bugid:$routeParams.bugid, buid:$routeParams.buid}, isArray:false}
+        return $resource('bug/:year/:bugid/:buid', {}, {
+            query: {method:'GET', params:{year:$routeParams.year, bugid:$routeParams.bugid, buid:$routeParams.buid}, isArray:false}
         });
     });
