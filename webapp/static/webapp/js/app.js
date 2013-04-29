@@ -1,4 +1,4 @@
-var App = angular.module('proris', ['prorisServices']);
+var App = angular.module('proris', []);
 
 App.config(['$routeProvider', function($routeProvider) {
         $routeProvider.

@@ -1,25 +1,43 @@
-function PBCtrl($scope, $routeParams, PB) {
-    $scope.its = PB.query();
+function PBCtrl($scope, $routeParams, $http) {
+    
+    $http.get('pb/' + $routeParams.year).success(function(data) {
+        $scope.its = data;
+    });
+    
     $scope.year = $routeParams.year;
 }
 
-function BUGCtrl($scope, $routeParams, BUG) {
-	$scope.its = BUG.query();
+function BUGCtrl($scope, $routeParams, $http) {
+
+	$http.get('bug/' + $routeParams.year).success(function(data) {
+        $scope.its = data;
+    });
+    
 	$scope.year = $routeParams.year;
 }
 
-function PBItemCtrl($scope, PBItem) {
-	$scope.its = PBItem.query();
+function PBItemCtrl($scope, $routeParams, $http) {
+
+	$http.get('pb/' + $routeParams.year + '/' + $routeParams.pbid).success(function(data) {
+        $scope.its = data;
+    });
 }
 
-function BUGBuCtrl($scope, $routeParams, BUGBu) {
-	$scope.its = BUGBu.query();
+function BUGBuCtrl($scope, $routeParams, $http) {
+
+	$http.get('bug/' + $routeParams.year + '/' + $routeParams.bugid).success(function(data) {
+        $scope.its = data;
+    });
+	
 	$scope.year = $routeParams.year;
 	$scope.bugid = $routeParams.bugid;
 }
 
-function BUGBuItemCtrl($scope, BUGBuItem) {
-	$scope.its = BUGBuItem.query();
+function BUGBuItemCtrl($scope, $routeParams, $http) {
+
+	$http.get('bug/' + $routeParams.year + '/' + $routeParams.bugid + '/' + $routeParams.buid).success(function(data) {
+        $scope.its = data;
+    });
 }
 
 function PBPieCtrl($scope){
