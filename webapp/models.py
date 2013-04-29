@@ -45,10 +45,10 @@ class Programme(models.Model):
         verbose_name_plural = "   Programmes"
 
 class Category(models.Model):
-    balance = models.ForeignKey(Balance)
-    budget_user = models.ForeignKey(BudgetUser)
-    political_branch = models.ForeignKey(PoliticalBranch)
-    programme = models.ForeignKey(Programme)
+    balance = models.ForeignKey(Balance, related_name="categories")
+    budget_user = models.ForeignKey(BudgetUser, related_name="categories")
+    political_branch = models.ForeignKey(PoliticalBranch, related_name="categories")
+    programme = models.ForeignKey(Programme, related_name="categories")
     name = models.CharField(max_length=200)
     def __unicode__(self):
         return self.name
@@ -56,7 +56,7 @@ class Category(models.Model):
         verbose_name_plural = " Categories"
 
 class Item(models.Model):
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, related_name="items")
     budget_year = models.IntegerField()
     value = models.FloatField()
     def __unicode__(self):

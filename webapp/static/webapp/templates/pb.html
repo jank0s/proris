@@ -1,5 +1,5 @@
 <div id="top">
-    <h3><a href="#">Proris</a></h3>
+    <h3><a href="#">Proris</a>->Kategorije</h3>
 </div>
 <h2>header</h2>
 <div id="visual">
@@ -11,9 +11,9 @@
         <th width="15%">Izdatek</th>
         <th width="10%">Delež</th>
     </tr>
-    <tr ng-repeat="branch in its.objects">
+    <tr ng-repeat="branch in its">
         <td><a href="#/pb/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
-        <td> TBD </td>
-        <td> TBD </td>
+        <td> {{ branch.value }} </td>
+        <td> {{ branch.percent }} </td>
     </tr>
 </table>
