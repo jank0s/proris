@@ -1,18 +1,20 @@
 from django import forms
-from webapp.models import Balance, Group, BudgetUserGroup, BudgetUser, PoliticalBranch, Programme, Category, Item
+from webapp.models import Balance, Group, BudgetUserGroup, Item
+from webapp.models import BudgetUser, PoliticalBranch, Programme, Category
 import csv
+
 
 class DataInput(forms.Form):
     file = forms.FileField(help_text="*File must be encoded in UTF-8 format")
     year = forms.IntegerField()
-    
+
     def save(self):
         records = csv.reader(self.cleaned_data["file"], delimiter=';')
-         
+
         for line in records:
             if line[1] == "BLC_NAME":
                 continue
-            
+
             balance = Balance.objects.filter(name=line[1])
             if not balance.exists():
                 balance = Balance()
@@ -20,8 +22,7 @@ class DataInput(forms.Form):
                 balance.save()
             else:
                 balance = balance.get()
-               
-               
+
             group = Group.objects.filter(name=line[3])
             if not group.exists():
                 group = Group()
@@ -29,9 +30,9 @@ class DataInput(forms.Form):
                 group.save()
             else:
                 group = group.get()
-                
-                
-            budget_user_group = BudgetUserGroup.objects.filter(name=line[5],group=group.pk)
+
+            budget_user_group = BudgetUserGroup.objects.filter(name=line[5],
+                                                               group=group.pk)
             if not budget_user_group.exists():
                 budget_user_group = BudgetUserGroup()
                 budget_user_group.group = group
@@ -39,9 +40,9 @@ class DataInput(forms.Form):
                 budget_user_group.save()
             else:
                 budget_user_group = budget_user_group.get()
-                
-                
-            budget_user = BudgetUser.objects.filter(name=line[7],group=budget_user_group.pk)
+
+            budget_user = BudgetUser.objects.filter(name=line[7],
+                                                    group=budget_user_group.pk)
             if not budget_user.exists():
                 budget_user = BudgetUser()
                 budget_user.group = budget_user_group
@@ -49,8 +50,7 @@ class DataInput(forms.Form):
                 budget_user.save()
             else:
                 budget_user = budget_user.get()
-            
-            
+
             political_branch = PoliticalBranch.objects.filter(name=line[9])
             if not political_branch.exists():
                 political_branch = PoliticalBranch()
@@ -58,8 +58,7 @@ class DataInput(forms.Form):
                 political_branch.save()
             else:
                 political_branch = political_branch.get()
-                
-                
+
             programme = Programme.objects.filter(name=line[11])
             if not programme.exists():
                 programme = Programme()
@@ -67,9 +66,12 @@ class DataInput(forms.Form):
                 programme.save()
             else:
                 programme = programme.get()
-            
-            
-            category = Category.objects.filter(name=line[13], balance=balance.pk, budget_user=budget_user.pk, political_branch=political_branch.pk, programme=programme.pk)
+
+            category = Category.objects.filter(name=line[13],
+                                               balance=balance.pk,
+                                               budget_user=budget_user.pk,
+                                               political_branch=political_branch.pk,
+                                               programme=programme.pk)
             if not category.exists():
                 category = Category()
                 category.balance = balance
@@ -80,15 +82,13 @@ class DataInput(forms.Form):
                 category.save()
             else:
                 category = category.get()
-            
-            
-            item = Item.objects.filter(category=category.pk, budget_year = self.cleaned_data["year"])
+
+            item = Item.objects.filter(category=category.pk, budget_year=self.cleaned_data["year"])
             if not item.exists():
                 item = Item()
                 item.category = category
                 item.budget_year = self.cleaned_data["year"]
-                item.value = float(line[14].replace(",","."))
+                item.value = float(line[14].replace(",", "."))
                 item.save()
             else:
                 item = item.get()
-                        

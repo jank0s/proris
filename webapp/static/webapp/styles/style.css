@@ -37,6 +37,12 @@ body{
     width:100%;
 }
 
+piechart{
+    display:none;
+    width:997px;
+    height:350px;
+}​
+
 #content table a:link {color:#000000;}
 #content table a:visited {color:#000000;}
 #content table a:hover {color:#D8D8D8;}

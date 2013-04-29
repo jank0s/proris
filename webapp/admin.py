@@ -1,5 +1,7 @@
 from django.contrib import admin
-from webapp.models import Balance, Group, BudgetUserGroup, BudgetUser, PoliticalBranch, Programme, Category, Item
+from webapp.models import Balance, Group, BudgetUserGroup, Item
+from webapp.models import BudgetUser, PoliticalBranch, Programme, Category
+
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('budget_year', 'category', 'value')
