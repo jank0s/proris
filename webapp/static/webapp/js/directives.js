@@ -3,7 +3,9 @@ App.directive('piechart', function() {
         restrict: 'EA',
         link: function(scope, elem, attrs) {
             var data = scope[attrs.ngModel];
-            $.plot(elem, data, {
+            var chart = null;
+                        
+            $.plot(elem, data , {
 		           series: {
 				        pie: {
 				            show: true,
