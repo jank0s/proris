@@ -13,7 +13,7 @@
     </tr>
     <tr ng-repeat="branch in its">
         <td><a href="#/bug/{{year}}/{{bugid}}/{{branch.id}}">{{branch.name}}</a></td>
-        <td> TBD </td>
-        <td> TBD </td>
+        <td> {{ branch.value }} </td>
+        <td> {{ branch.percent }} </td>
     </tr>
 </table>
