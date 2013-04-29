@@ -16,7 +16,6 @@ v1_api.register(PoliticalBranchResource())
 v1_api.register(ProgrammeResource())
 v1_api.register(CategoryResource())
 v1_api.register(ItemResource())
-v1_api.register(TestResource())
 
 urlpatterns = patterns('',
                        url(r'^api/', include(v1_api.urls)),
