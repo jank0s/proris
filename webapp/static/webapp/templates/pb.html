@@ -11,14 +11,25 @@
 	</div>
 </div>
 <table>
-    <tr>
-        <th>Postavka</th>
-        <th width="15%">Izdatek</th>
-        <th width="10%">Delež</th>
+    <thead>
+        <tr>
+            <th>Postavka</th>
+            <th width="15%">Izdatek</th>
+            <th width="10%">Delež</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="branch in its">
+            <td><a href="#/pb/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
+            <td id="right"> {{ branch.value  | number:0 }} €</td>
+            <td id="right"> {{ branch.percent | number:2 }} %</td>
+        </tr>
+    </tbody>
+    <tfoot>
+    <tr id="sum">
+        <td>Skupaj:</td>
+        <td></td>
+        <td></td>
     </tr>
-    <tr ng-repeat="branch in its">
-        <td><a href="#/pb/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
-        <td id="right"> {{ branch.value  | number:0 }} €</td>
-        <td id="right"> {{ branch.percent | number:2 }} %</td>
-    </tr>
+    </tfoot>
 </table>
