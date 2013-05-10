@@ -53,6 +53,7 @@ function PBItemCtrl($scope, $routeParams, $http) {
 	}
     
 	$scope.pie = datapie;
+    $scope.year = $routeParams.year;
 }
 
 function BUGBuCtrl($scope, $routeParams, $http) {
@@ -92,4 +93,6 @@ function BUGBuItemCtrl($scope, $routeParams, $http) {
 	}
     
 	$scope.pie = datapie;
+    $scope.year = $routeParams.year;
+    $scope.bugid = $routeParams.bugid;
 }
