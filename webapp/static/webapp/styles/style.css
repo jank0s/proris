@@ -37,11 +37,17 @@ body{
     width:100%;
 }
 
+#right {
+    text-align: right;
+}
+
 piechart{
     display:none;
     width:997px;
     height:350px;
 }​
+
+
 
 #content table a:link {color:#000000;}
 #content table a:visited {color:#000000;}

@@ -18,7 +18,7 @@
     </tr>
     <tr ng-repeat="branch in its">
         <td><a href="#/bug/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
-        <td> {{ branch.value }} </td>
-        <td> {{ branch.percent }} </td>
+        <td id="right"> {{ branch.value  | number:0 }} €</td>
+        <td id="right"> {{ branch.percent | number:2 }} %</td>
     </tr>
 </table>
