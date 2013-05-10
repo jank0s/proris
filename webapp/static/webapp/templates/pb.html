@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="branch in its">
+        <tr ng-repeat="branch in its.list">
             <td><a href="#/pb/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
             <td id="right"> {{ branch.value  | number:0 }} €</td>
             <td id="right"> {{ branch.percent | number:2 }} %</td>
@@ -28,7 +28,7 @@
     <tfoot>
     <tr id="sum">
         <td>Skupaj:</td>
-        <td></td>
+        <td>{{ its.sum | number:0 }} €</td>
         <td></td>
     </tr>
     </tfoot>

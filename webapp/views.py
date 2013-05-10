@@ -43,37 +43,63 @@ def pb(request, year):
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
             for br in branch_list]
-    return HttpResponse(json.dumps(list), mimetype='application/json')
+    #prepare data
+    data = {'list':list, 'sum':sum}
+    #return json
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
 def pb_item(request, year, pb_id):
+    #calculate sum
     sum = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).aggregate(s=Sum('value'))['s']
+    #query
     item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).values('category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
-    list = [{'id': "", 'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100}
+    #calculate percentage
+    list = [{'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100}
             for item in item_list]
-    context = {'list': list, 'path': PoliticalBranch.objects.get(pk=pb_id).name, 'header': PoliticalBranch.objects.get(pk=pb_id).name}
-    return HttpResponse(json.dumps(list), mimetype='application/json')
+    #prepare data
+    data = {'list': list, 'sum': sum, 'name': PoliticalBranch.objects.get(pk=pb_id).name}
+    #return json
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
 def bug(request, year):
+    #calculate sum
     sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
+    #query
     bug_list = BudgetUserGroup.objects.values('name').filter(budgetuser__categories__items__budget_year=year).annotate(group_sum=Sum('budgetuser__categories__items__value')).values('id', 'name', 'group_sum').order_by('-group_sum')
+    #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100}
             for br in bug_list]
-    return HttpResponse(json.dumps(list), mimetype='application/json')
+    #prepare data
+    data = {'list':list, 'sum':sum}
+    #return json
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
 def bug_bu(request, year, bug_id):
+    #calculate sum
     sum = Item.objects.filter(budget_year=year).filter(category__budget_user__group__id=bug_id).aggregate(s=Sum('value'))['s']
+    #query
     bug_list = BudgetUser.objects.values('name').filter(categories__items__budget_year=year).filter(group__id=bug_id).annotate(group_sum=Sum('categories__items__value')).values('id', 'name', 'group_sum').order_by('-group_sum')
+    #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100}
             for br in bug_list]
-    return HttpResponse(json.dumps(list), mimetype='application/json')
+    #prepare data
+    data = {'list': list, 'sum': sum, 'name': BudgetUserGroup.objects.get(pk=bug_id).name}
+    #return json
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
 def bug_bu_item(request, year, bug_id, bu_id):
+    #calculate sum
     sum = Item.objects.filter(budget_year=year).filter(category__budget_user__group__id=bug_id).filter(category__budget_user_id=bu_id).aggregate(s=Sum('value'))['s']
+    #query
     item_list = Item.objects.filter(budget_year=year).filter(category__budget_user_id=bu_id).filter(category__budget_user__group_id=bug_id).values('id', 'category__name', 'value').order_by('-value')
+    #calculate percentage
     list = [{'id': "", 'name': item['category__name'], 'value': item['value'], 'percent': item['value']/sum*100}
             for item in item_list]
-    return HttpResponse(json.dumps(list), mimetype='application/json')
+    #prepare data
+    data = {'list': list, 'sum': sum, 'bug_name': BudgetUserGroup.objects.get(pk=bug_id).name, 'name': BudgetUser.objects.get(pk=bu_id).name}
+    #return json
+    return HttpResponse(json.dumps(data), mimetype='application/json')
