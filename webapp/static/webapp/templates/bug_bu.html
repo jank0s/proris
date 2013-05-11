@@ -1,10 +1,13 @@
 <div id="top">
     <h3><a href="#">Proris</a>-><a href="#/bug/{{ year }}">Skupine proračunskih uporabnikov</a>->{{ its.name }}</h3>
 </div>
-<h2>{{ its.name }}</h2>
-<div id="year" ng-repeat="y in yList">
-    <a href="#/bug/{{ y.year }}/{{ bugid }}">{{ y.year }}</a>
+<div id="head">
+    <h2>{{ its.name }}</h2>
 </div>
+<div id="year" ng-repeat="y in yList">
+    <a href="#/bug/{{ y.year }}/{{ bugid }}">{{ y.year }} · </a>
+</div>
+<div style="clear:both;"></div>
 <div id="visual">
     <div>
 	    <div ng-controller='BUGBuCtrl'>

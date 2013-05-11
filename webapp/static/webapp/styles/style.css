@@ -37,8 +37,12 @@ body{
     border-bottom: 1px solid #eee;
 }
 
-#content #year {
+#content #head {
+    float:left;
+}
 
+#content #year {
+    float:right;
 }
 
 #visual {
