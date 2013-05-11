@@ -4,8 +4,9 @@
 <div id="head">
     <h2>Kategorije</h2>
 </div>
-<div id="year" ng-repeat="y in yList">
-    <a href="#/pb/{{ y.year }}">{{ y.year }} · </a>
+<div id="year">
+    Leto
+    <a href="#/pb/{{ y.year }}" ng-repeat="y in yList"> · {{ y.year }}</a>
 </div>
 <div style="clear:both;"></div>
 <div id="visual">

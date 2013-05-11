@@ -4,8 +4,9 @@
 <div id="head">
     <h2>{{ its.name }}</h2>
 </div>
-<div id="year" ng-repeat="y in yList">
-    <a href="#/bug/{{ y.year }}/{{ bugid }}/{{ buid }}">{{ y.year }} · </a>
+<div id="year">
+    Leto
+    <a href="#/bug/{{ y.year }}/{{ bugid }}/{{ buid }}" ng-repeat="y in yList"> · {{ y.year }}</a>
 </div>
 <div style="clear:both;"></div>
 <div id="visual">
