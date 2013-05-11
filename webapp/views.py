@@ -34,6 +34,25 @@ def importcsv(request):
 def index(request):
     return render(request, 'webapp/index.html')
 
+def year(request):
+    #query
+    query = Item.objects.values('budget_year').distinct()
+    #prepare data
+    data = [{'year': q['budget_year']} for q in query]
+    return HttpResponse(json.dumps(data), mimetype='application/json')
+
+def pb(request, year):
+    #calculate sum
+    sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
+    #query
+    branch_list = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=year).annotate(branch_sum=Sum('categories__items__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
+    #calculate percentage
+    list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
+            for br in branch_list]
+    #prepare data
+    data = {'list':list, 'sum':sum}
+    #return json
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 def pb(request, year):
     #calculate sum
