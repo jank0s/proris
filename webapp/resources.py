@@ -2,9 +2,6 @@
 from tastypie.resources import ModelResource
 from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
 from tastypie import fields
-from tastypie.constants import ALL
-from django.db.models import Avg, Max, Min, Count, Sum
-import sys
 
 
 class BalanceResource(ModelResource):

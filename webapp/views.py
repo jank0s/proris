@@ -4,8 +4,8 @@ from webapp.forms import DataInput
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.contrib import messages
-from webapp.models import Group, BudgetUserGroup, BudgetUser, Balance, PoliticalBranch, Programme, Category, Item
-from django.db.models import Avg, Max, Min, Count, Sum
+from webapp.models import BudgetUserGroup, BudgetUser, PoliticalBranch, Item
+from django.db.models import Sum
 import json
 
 
