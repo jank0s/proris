@@ -3,6 +3,17 @@
 
 body, div, h1, h2, h3, h4, h5, h6, p, ul, img {margin:0px; padding:0px; }
 
+a:link {
+    color:#000000;
+    text-decoration:none
+}
+a:visited {
+    color:#000000;
+}
+a:hover {
+    color:#707070;
+}
+
 body{
     background: #D8D8D8;
 }
@@ -24,6 +35,15 @@ body{
     text-shadow: #fff 1px 1px 3px;
     background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
     border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+}
+
+#content #head {
+    float:left;
+}
+
+#content #year {
+    float:right;
 }
 
 #visual {
@@ -35,6 +55,31 @@ body{
 #content table
 {
     width:100%;
+    border-collapse: collapse;
+}
+
+#content table tbody td {
+    padding: 3px 5px 3px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+#content table tbody tr:hover {
+    background-color: #DDE7F0;
+}
+
+#content table thead th {
+    background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
+}
+
+#right {
+    text-align: right;
+}
+
+#sum {
+    border-bottom: none;
+    border-top: 2px solid #333;
+    text-align: right;
+    font-weight:bold;
 }
 
 piechart{
@@ -42,8 +87,3 @@ piechart{
     width:997px;
     height:350px;
 }​
-
-#content table a:link {color:#000000;}
-#content table a:visited {color:#000000;}
-#content table a:hover {color:#D8D8D8;}
-#content table a:active {color:#000000;}

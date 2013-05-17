@@ -1,7 +1,14 @@
 <div id="top">
-    <h3><a href="#">Proris</a></h3>
+    <h3><a href="#">Proris</a>->Skupine proračunskih uporabnikov</h3>
 </div>
-<h2>header</h2>
+<div id="head">
+    <h2>Skupine proračunskih uporabnikov</h2>
+</div>
+<div id="year">
+    Leto
+    <a href="#/bug/{{ y.year }}" ng-repeat="y in yList"> · {{ y.year }}</a>
+</div>
+<div style="clear:both;"></div>
 <div id="visual">
     <div>
 	    <div ng-controller='BUGCtrl'>
@@ -11,14 +18,25 @@
 	</div>
 </div>
 <table>
+    <thead>
     <tr>
         <th>Postavka</th>
         <th width="15%">Izdatek</th>
         <th width="10%">Delež</th>
     </tr>
-    <tr ng-repeat="branch in its">
+    </thead>
+    <tbody>
+    <tr ng-repeat="branch in its.list">
         <td><a href="#/bug/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
-        <td> {{ branch.value }} </td>
-        <td> {{ branch.percent }} </td>
+        <td id="right"> {{ branch.value  | number:0 }} €</td>
+        <td id="right"> {{ branch.percent | number:2 }} %</td>
     </tr>
+    </tbody>
+    <tfoot>
+    <tr id="sum">
+        <td>Skupaj:</td>
+        <td>{{ its.sum | number:0 }} €</td>
+        <td></td>
+    </tr>
+    </tfoot>
 </table>
