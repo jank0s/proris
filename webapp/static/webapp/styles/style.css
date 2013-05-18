@@ -15,18 +15,24 @@ a:hover {
 }
 
 body{
-    background: #D8D8D8;
+    background: #D8D8D8 url('../images/bg.png') repeat;
 }
 
 .container {
-    width: 1000px;
+    width: 80%;
     margin: 0 auto;
     padding-top: 20px;
 }
-
+.logo {
+	width: 250px;
+	height: 108px;
+	background: url('../images/logo.png') no-repeat;
+	display: block;
+	margin: 30px 0;
+}
 #content {
     background-color: #FFFFFF;
-    padding-bottom: 2em;
+    padding: 2em;
     -webkit-box-shadow: 5px 5px 20px #606060 ;
     -webkit-border-radius: 3px;
 }
@@ -87,3 +93,7 @@ piechart{
     width:997px;
     height:350px;
 }​
+
+.menu {
+	list-style: none;
+}
