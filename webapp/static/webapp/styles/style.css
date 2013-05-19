@@ -23,6 +23,9 @@ body{
     background: #D8D8D8 url('../images/bg.png') repeat;
 }
 
+.right { text-align: right; }
+.left { text-align: left; }
+
 .container {
     width: 80%;
 	height: 100%;
@@ -75,6 +78,10 @@ body{
     border-collapse: collapse;
 }
 
+#content table th {
+	width: auto;
+}
+
 #content table tbody td {
     padding: 3px 5px 3px 5px;
     border-bottom: 1px solid #eee;
@@ -89,9 +96,6 @@ body{
     background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
 }
 .odd {
-
-}
-.even {
 
 }
 #right {
