@@ -3,13 +3,13 @@
 </div>
 <div id="head">
     <h2>{{ its.name }}</h2>
-</div>
-<div id="year">
-    Leto
-	<select onchange="window.open(this.value,'_self');">
-		<option value="#">Izberi leto</option>
-		<option value="#/bug/{{ y.year }}/{{ bugid }}" ng-repeat="y in yList">{{ y.year }}<option>
-	<select>
+	<div id="year">
+		Leto
+		<select onchange="window.open(this.value,'_self');" placeholder="blabla">
+			<option value="">Izberi leto</option>
+			<option value="#/bug/{{ y.year }}/{{ bugid }}" ng-repeat="y in yList">{{ y.year }}<option>
+		<select>
+	</div>
 </div>
 <div style="clear:both;"></div>
 <div id="visual">
