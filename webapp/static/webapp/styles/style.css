@@ -48,8 +48,14 @@ body{
 #content {
     background-color: #FFFFFF;
     padding: 2em;
-    -webkit-box-shadow: 5px 5px 20px #606060 ;
-    -webkit-border-radius: 3px;
+    -webkit-box-shadow: 5px 5px 20px #606060;
+	box-shadow: 5px 5px 20px #606060;
+	-moz-box-shadow: 5px 5px 20px #606060;
+	
+    -webkit-border-radius: 0px;
+	 -moz-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    border-radius: 0px;
 }
 
 #content #top {
