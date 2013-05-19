@@ -1,3 +1,3 @@
-$( document ).ready(function() {
-    $("tr:odd").addClass("odd");
-});
+function load(){ 
+	$("tbody > tr:odd").addClass("odd");	
+};

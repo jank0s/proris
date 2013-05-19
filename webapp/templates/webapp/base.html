@@ -5,6 +5,7 @@
         <title>Proris</title>
         <link rel="stylesheet" type="text/css" href="{% static 'webapp/styles/style.css' %}">
         <script src="{% static 'webapp/lib/jquery.js' %}"></script>
+		<script src="{% static 'webapp/js/custom.js' %}"></script>
         <script src="{% static 'webapp/lib/jquery.flot.js' %}"></script>
         <script src="{% static 'webapp/lib/jquery.flot.pie.js' %}"></script>
         <script src="{% static 'webapp/lib/jquery.flot.categories.js' %}"></script>
@@ -13,9 +14,8 @@
         <script src="{% static 'webapp/js/controllers.js' %}"></script>
         <script src="{% static 'webapp/js/app.js' %}"></script>
         <script src="{% static 'webapp/js/directives.js' %}"></script>
-		<script src="{% static 'webapp/js/custom.js' %}"></script>
     </head>
-    <body>
+    <body onload="load()">
         {% block content %}
         {% endblock %}
     </body>

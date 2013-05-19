@@ -15,7 +15,8 @@ a:visited {
     color:#000000;
 }
 a:hover {
-    color:#0099ff;
+    color: white;
+	background: #0099ff;
 }
 
 body{
@@ -88,7 +89,8 @@ body{
 }
 
 #content table tbody tr:hover {
-    background-color: #DDE7F0;
+    background-color: #0099ff;
+	color: white;
 }
 
 #content table thead th {
@@ -96,7 +98,7 @@ body{
     background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
 }
 .odd {
-
+	background: rgba(0,0,0,0.10);
 }
 #right {
     text-align: right;
