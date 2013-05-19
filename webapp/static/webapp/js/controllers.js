@@ -1,7 +1,7 @@
 function PBCtrl($scope, $routeParams, $http) {
    
     $http.get('pb/' + $routeParams.year).success(function(data) {
-        $scope.its = data;    
+        $scope.its = data;  
     });
    
     var datapie = [];
