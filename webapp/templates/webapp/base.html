@@ -5,6 +5,7 @@
         <title>Proris</title>
         <link rel="stylesheet" type="text/css" href="{% static 'webapp/styles/style.css' %}">
         <script src="{% static 'webapp/lib/jquery.js' %}"></script>
+		<script src="{% static 'webapp/js/custom.js' %}"></script>
         <script src="{% static 'webapp/lib/jquery.flot.js' %}"></script>
         <script src="{% static 'webapp/lib/jquery.flot.pie.js' %}"></script>
         <script src="{% static 'webapp/lib/jquery.flot.categories.js' %}"></script>
@@ -14,7 +15,8 @@
         <script src="{% static 'webapp/js/app.js' %}"></script>
         <script src="{% static 'webapp/js/directives.js' %}"></script>
     </head>
-    <body>
+    <body onload="load()">
+		<!--<a href="https://github.com/ipri2013/proris"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>-->
         {% block content %}
         {% endblock %}
     </body>
