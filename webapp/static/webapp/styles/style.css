@@ -122,6 +122,15 @@ ul.menu {
 	list-style: none;
 }
 
+.menu > li {
+	list-style: none;
+	display: inline;
+}
+
+.menu > li a:hover {
+	background: none;
+	color: #0099ff;
+}
 /* arrow */
 
 .arrow-e {
@@ -145,10 +154,24 @@ ul.menu {
 	margin: 2px 3px;
 }
 
+/* big arrow */
+.arrow {
+	background: url('../images/arrow.png') no-repeat;
+	height: 20px;
+	width: auto;
+	display: inline-block;
+	padding: 5px 0 5px 40px;
+	margin: 20px;
+}
+
+.arrow:hover {
+	background-position: 0px -30px;
+}
+
 /* social icons */
 .social-slide {
 	position: relative;
-	top: -80px;
+	top: -78px;
 	right: -10px;
 	height: 48px;
 	width: 48px;
