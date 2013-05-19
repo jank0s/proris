@@ -6,7 +6,10 @@
 </div>
 <div id="year">
     Leto
-    <a href="#/pb/{{ y.year }}/{{ pbid }}" ng-repeat="y in yList"> · {{ y.year }}</a>
+	<select onchange="window.open(this.value,'_self');">
+		<option value="#">Izberi leto</option>
+		<option value="#/pb/{{ y.year }}/{{ pbid }}" ng-repeat="y in yList">{{ y.year }}<option>
+	<select>
 </div>
 <div style="clear:both;"></div>
 <div id="visual">

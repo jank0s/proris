@@ -57,7 +57,9 @@ body{
     -khtml-border-radius: 0px;
     border-radius: 0px;
 }
-
+#content .ng-scope {
+	width: 100%;
+}
 #content #top {
 	padding: 5px 0 5px 10px;
 	font-size: 0.7em;
