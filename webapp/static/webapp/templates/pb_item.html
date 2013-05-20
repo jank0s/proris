@@ -5,10 +5,9 @@
     <h2>{{ its.name }}</h2>
 	<div id="year">
 		Leto
-		<select onchange="window.open(this.value,'_self');" placeholder="blabla">
-			<option value="" >Izberi leto</option>
+		<select id="yearSelect" onchange="window.open(this.value,'_self');">
 			<option value="#/pb/{{ y.year }}/{{ pbid }}" ng-repeat="y in yList">{{ y.year }}<option>
-		<select>
+		</select>
 	</div>
 </div>
 <div style="clear:both;"></div>
