@@ -4,7 +4,36 @@ App.directive('piechart', function() {
         link: function(scope, elem, attrs) {
             var data = scope[attrs.ngModel];
             var chart = null;
-                        
+            
+            scope.$watch(attrs.ngModel, function(v){
+
+                if(!chart){
+                    chart = $.plot(elem, v , {
+	     		           series: {
+	   				        pie: {
+	   				            show: true,
+	   				            radius: 1000,
+	   				            label: {
+	   				            	show: false
+	   				            }
+	   				        }
+	   				    },
+	   				    legend: {
+	   				        show: false
+	   				    },
+	   				    grid: {
+	   				        hoverable: true,
+	   				        clickable: true
+	   				    }
+                    });
+                    elem.show();
+                }else{
+                    chart.setData(v);
+                    chart.setupGrid();
+                    chart.draw();
+                }
+            });
+            /*     
             $.plot(elem, data , {
 		           series: {
 				        pie: {
@@ -50,8 +79,8 @@ App.directive('piechart', function() {
 
 			});
 			
-            
-            elem.show();
+            */
+            //elem.show();
         }
     };
 });
