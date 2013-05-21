@@ -4,13 +4,26 @@ function PBCtrl($scope, $routeParams, $http) {
         $scope.its = data;  
         
         var datapie = [];
-        for (var i = 0; i < 10; i++) {
-	    	var temp = {};
-	    	temp.label = "Placeholder";
-	    	temp.data = Math.random();
-	    	datapie.push(temp);
+        var count = 0;
+        for (var i = 0; i < 15; i++) {
+        	if(i < data.list.length){
+        		if(data.list[i].percent < 1)
+        			break;
+        		
+        		var temp = {};
+    	    	temp.label = data.list[i].name;
+    	    	temp.data = data.list[i].percent;
+    	    	datapie.push(temp);
+    	    	
+    	    	count += data.list[i].percent;
+        	}
 		}
 	    
+        var temp = {};
+        temp.label = "Ostali";
+        temp.data = 100 - count;
+        datapie.push(temp);
+        
 	    $scope.pie = datapie;
     });
 
@@ -28,13 +41,25 @@ function BUGCtrl($scope, $routeParams, $http) {
         $scope.its = data;
         
         var datapie = [];
-        
-        for (var i = 0; i < 10; i++) {
-    	    	var temp = {};
-    	    	temp.label = "Placeholder";
-    	    	temp.data = Math.random();
+        var count = 0;
+        for (var i = 0; i < 15; i++) {
+        	if(i < data.list.length){
+        		if(data.list[i].percent < 1)
+        			break;
+        		        		
+        		var temp = {};
+    	    	temp.label = data.list[i].name;
+    	    	temp.data = data.list[i].percent;
     	    	datapie.push(temp);
-    	}
+    	    	
+    	    	count += data.list[i].percent;
+        	}
+		}
+	    
+        var temp = {};
+        temp.label = "Ostali";
+        temp.data = 100 - count;
+        datapie.push(temp);
         
         $scope.pie = datapie;
         
@@ -55,12 +80,25 @@ function PBItemCtrl($scope, $routeParams, $http) {
         $scope.its = data;
         
         var datapie = [];
-        for (var i = 0; i < 10; i++) {
-	    	var temp = {};
-	    	temp.label = "Placeholder";
-	    	temp.data = Math.random();
-	    	datapie.push(temp);
+        var count = 0;
+        for (var i = 0; i < 15; i++) {
+        	if(i < data.list.length){
+        		if(data.list[i].percent < 1)
+        			break;
+        		        		
+        		var temp = {};
+    	    	temp.label = data.list[i].name;
+    	    	temp.data = data.list[i].percent;
+    	    	datapie.push(temp);
+    	    	
+    	    	count += data.list[i].percent;
+        	}
 		}
+	    
+        var temp = {};
+        temp.label = "Ostali";
+        temp.data = 100 - count;
+        datapie.push(temp);
 	    
 	    $scope.pie = datapie;
     });
@@ -80,12 +118,25 @@ function BUGBuCtrl($scope, $routeParams, $http) {
         $scope.its = data;
         
         var datapie = [];
-        for (var i = 0; i < 10; i++) {
-	    	var temp = {};
-	    	temp.label = "Placeholder";
-	    	temp.data = Math.random();
-	    	datapie.push(temp);
+        var count = 0;
+        for (var i = 0; i < 15; i++) {
+        	if(i < data.list.length){
+        		if(data.list[i].percent < 1)
+        			break;
+        		        		
+        		var temp = {};
+    	    	temp.label = data.list[i].name;
+    	    	temp.data = data.list[i].percent;
+    	    	datapie.push(temp);
+    	    	
+    	    	count += data.list[i].percent;
+        	}
 		}
+	    
+        var temp = {};
+        temp.label = "Ostali";
+        temp.data = 100 - count;
+        datapie.push(temp);
 	    
 	    $scope.pie = datapie;
     });
@@ -105,13 +156,26 @@ function BUGBuItemCtrl($scope, $routeParams, $http) {
         $scope.its = data;
         
         var datapie = [];
-        for (var i = 0; i < 10; i++) {
-	    	var temp = {};
-	    	temp.label = "Placeholder";
-	    	temp.data = Math.random();
-	    	datapie.push(temp);
+        var count = 0;
+        for (var i = 0; i < 15; i++) {
+        	if(i < data.list.length){
+        		if(data.list[i].percent < 1)
+        			break;
+        		
+        		var temp = {};
+    	    	temp.label = data.list[i].name;
+    	    	temp.data = data.list[i].percent;
+    	    	datapie.push(temp);
+    	    	
+    	    	count += data.list[i].percent;
+        	}
 		}
 	    
+        var temp = {};
+        temp.label = "Ostali";
+        temp.data = 100 - count;
+        datapie.push(temp);
+        
 	    $scope.pie = datapie;
     });
 
