@@ -1,12 +1,11 @@
 App.directive('piechart', function() {
     return {
         restrict: 'EA',
-        link: function(scope, elem, attrs) {
+        link: function(scope, elem, attrs, $window) {
             var data = scope[attrs.ngModel];
             var chart = null;
             
             scope.$watch(attrs.ngModel, function(v){
-
                 if(!chart){
                     chart = $.plot(elem, v , {
 	     		           series: {
@@ -33,7 +32,7 @@ App.directive('piechart', function() {
                     chart.draw();
                 }
             });
-              
+                       
             
             var previousPoint = null; 
             elem.bind("plothover", function(event, pos, obj) {
