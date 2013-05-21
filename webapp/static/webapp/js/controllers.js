@@ -7,7 +7,7 @@ function PBCtrl($scope, $routeParams, $http) {
         var count = 0;
         for (var i = 0; i < 15; i++) {
         	if(i < data.list.length){
-        		if(data.list[i].percent < 1)
+        		if(data.list[i].percent < 2)
         			break;
         		
         		var temp = {};
@@ -44,7 +44,7 @@ function BUGCtrl($scope, $routeParams, $http) {
         var count = 0;
         for (var i = 0; i < 15; i++) {
         	if(i < data.list.length){
-        		if(data.list[i].percent < 1)
+        		if(data.list[i].percent < 2)
         			break;
         		        		
         		var temp = {};
@@ -83,7 +83,7 @@ function PBItemCtrl($scope, $routeParams, $http) {
         var count = 0;
         for (var i = 0; i < 15; i++) {
         	if(i < data.list.length){
-        		if(data.list[i].percent < 1)
+        		if(data.list[i].percent < 2)
         			break;
         		        		
         		var temp = {};
@@ -121,7 +121,7 @@ function BUGBuCtrl($scope, $routeParams, $http) {
         var count = 0;
         for (var i = 0; i < 15; i++) {
         	if(i < data.list.length){
-        		if(data.list[i].percent < 1)
+        		if(data.list[i].percent < 2)
         			break;
         		        		
         		var temp = {};
@@ -159,7 +159,7 @@ function BUGBuItemCtrl($scope, $routeParams, $http) {
         var count = 0;
         for (var i = 0; i < 15; i++) {
         	if(i < data.list.length){
-        		if(data.list[i].percent < 1)
+        		if(data.list[i].percent < 2)
         			break;
         		
         		var temp = {};
