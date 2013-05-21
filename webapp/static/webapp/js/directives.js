@@ -1,28 +1,38 @@
 App.directive('piechart', function() {
     return {
         restrict: 'EA',
-        link: function(scope, elem, attrs) {
+        link: function(scope, elem, attrs, $window) {
             var data = scope[attrs.ngModel];
             var chart = null;
-                        
-            $.plot(elem, data , {
-		           series: {
-				        pie: {
-				            show: true,
-				            radius: 1000,
-				            label: {
-				            	show: false
-				            }
-				        }
-				    },
-				    legend: {
-				        show: false
-				    },
-				    grid: {
-				        hoverable: true,
-				        clickable: true
-				    }
+            
+            scope.$watch(attrs.ngModel, function(v){
+                if(!chart){
+                    chart = $.plot(elem, v , {
+	     		           series: {
+	   				        pie: {
+	   				            show: true,
+	   				            radius: 1000,
+	   				            label: {
+	   				            	show: false
+	   				            }
+	   				        }
+	   				    },
+	   				    legend: {
+	   				        show: false
+	   				    },
+	   				    grid: {
+	   				        hoverable: true,
+	   				        clickable: true
+	   				    }
+                    });
+                    elem.show();
+                }else{
+                    chart.setData(v);
+                    chart.setupGrid();
+                    chart.draw();
+                }
             });
+                       
             
             var previousPoint = null; 
             elem.bind("plothover", function(event, pos, obj) {
@@ -51,7 +61,7 @@ App.directive('piechart', function() {
 			});
 			
             
-            elem.show();
+            //elem.show();
         }
     };
 });
