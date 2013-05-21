@@ -33,25 +33,7 @@ App.directive('piechart', function() {
                     chart.draw();
                 }
             });
-            /*     
-            $.plot(elem, data , {
-		           series: {
-				        pie: {
-				            show: true,
-				            radius: 1000,
-				            label: {
-				            	show: false
-				            }
-				        }
-				    },
-				    legend: {
-				        show: false
-				    },
-				    grid: {
-				        hoverable: true,
-				        clickable: true
-				    }
-            });
+              
             
             var previousPoint = null; 
             elem.bind("plothover", function(event, pos, obj) {
@@ -79,7 +61,7 @@ App.directive('piechart', function() {
 
 			});
 			
-            */
+            
             //elem.show();
         }
     };
