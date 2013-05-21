@@ -1,4 +1,4 @@
-function load(){ 
+function magic(){ 
 	$("tbody > tr:odd").addClass("odd");
 
 	var url = window.location.href;
@@ -6,10 +6,7 @@ function load(){
 		$(this).attr('selected', false);
 	    if(url.indexOf($(this).text()) !== -1)
 	    {
-			$(this).attr('selected', true);
-			alert($(this).text());
-			// $("#yearSelect").val($(this).text());
-			$("#yearSelect").val("v kuraccc");
+			$(this).prop('selected', true).change();
 		}
 	});
 };
