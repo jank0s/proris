@@ -3,10 +3,12 @@
 </div>
 <div id="head">
     <h2>{{ its.name }}</h2>
-</div>
-<div id="year">
-    Leto
-    <a href="#/bug/{{ y.year }}/{{ bugid }}"  ng-repeat="y in yList"> · {{ y.year }}</a>
+	<div id="year">
+		Leto
+		<select id="yearSelect" onchange="window.open(this.value,'_self');">
+			<option value="#/bug/{{ y.year }}/{{ bugid }}" ng-repeat="y in yList">{{ y.year }}</option>
+		</select>
+	</div>
 </div>
 <div style="clear:both;"></div>
 <div id="visual">

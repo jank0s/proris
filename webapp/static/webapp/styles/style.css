@@ -1,13 +1,12 @@
-@charset "utf-8";
+@charset"utf-8";
+
 /* CSS Document */
 
 /* typography */
-body, div, h1, h2, h3, h4, h5, h6, p, ul, img {margin:0px; padding:0px; }
-
-h2, h3 {
-	font-weight: 100;
+ body, div, h1, h2, h3, h4, h5, h6, p, ul, img {
+    margin:0px;
+    padding:0px;
 }
-
 a:link {
     color:#000000;
     text-decoration:none
@@ -17,186 +16,166 @@ a:visited {
 }
 a:hover {
     color: white;
-	background: #0099ff;
+    background: #0099ff;
 }
-
 /* body */
-body{
-	font-family: Verdana, Geneva, sans-serif;
+ body {
+    font-family: Verdana, Geneva, sans-serif;
     background: #D8D8D8 url('../images/bg.png') repeat;
 }
-
-.right { text-align: right; }
-.left { text-align: left; }
-
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
 .container {
-    width: 80%;
-	height: 100%;
-	min-width: 600px;
+    width: 1000px;
+    height: 100%;
+    min-width: 600px;
     margin: 0 auto;
-	margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 .logo {
-	width: 250px;
-	height: 108px;
-	background: url('../images/logo.png') no-repeat;
-	display: block;
-	margin: 20px 0;
+    width: 250px;
+    height: 108px;
+    background: url('../images/logo.png') no-repeat;
+    display: block;
+    margin: 20px 0;
 }
-
 /* content */
-#content {
+ #content {
     background-color: #FFFFFF;
-    padding: 2em;
+    padding-bottom: 2em;
     -webkit-box-shadow: 5px 5px 20px #606060;
-	box-shadow: 5px 5px 20px #606060;
-	-moz-box-shadow: 5px 5px 20px #606060;
-	
+    box-shadow: 5px 5px 20px #606060;
+    -moz-box-shadow: 5px 5px 20px #606060;
     -webkit-border-radius: 0px;
-	 -moz-border-radius: 0px;
+    -moz-border-radius: 0px;
     -khtml-border-radius: 0px;
     border-radius: 0px;
 }
-
 #content #top {
-	padding: 5px 0 5px 10px;
-	font-size: 0.7em;
-	font-weight: 100;
+    padding: 5px 0 5px 10px;
+    font-size: 0.7em;
+    font-weight: 100;
     text-shadow: #fff 1px 1px 3px;
     background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
     border-bottom: 1px solid #eee;
     text-transform: uppercase;
 }
-
 #content #head {
-    float:left;
-	margin: 10px 0;
+    width: 100%;
+    float: left;
+    margin: 10px 0 0 0;
 }
-
 #content #year {
-    float:right;
+    float: right;
+    position: relative;
+    top: -30px;
 }
-
 #visual {
     border: 2px solid;
     border-color: #D8D8D8;
     height: 350px;
 }
-
-#content table
-{
+#content table {
     width:100%;
     border-collapse: collapse;
 }
-
 #content table th {
-	width: auto;
+    width: auto;
 }
-
 #content table tbody td {
     padding: 3px 5px 3px 5px;
     border-bottom: 1px solid #eee;
 }
-
 #content table tbody tr:hover {
     background-color: #0099ff;
-	color: white;
+    color: white;
 }
-
 #content table thead th {
-	padding: 5px 0;
+    padding: 5px 0;
     background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
 }
 .odd {
-	background: rgba(0,0,0,0.10);
+    background: rgba(0, 0, 0, 0.10);
 }
-
 #sum {
     border-bottom: none;
     border-top: 2px solid #333;
-    text-align: right;
     font-weight:bold;
 }
-
-piechart{
+piechart {
     display:none;
     width:997px;
     height:350px;
-}​
-
-ul.menu {
-	list-style: none;
 }
-
+​ ul.menu {
+    list-style: none;
+}
 .menu > li {
-	list-style: none;
-	display: inline;
+    list-style: none;
+    display: inline;
 }
-
 .menu > li a:hover {
-	background: none;
-	color: #0099ff;
+    background: none;
+    color: #0099ff;
 }
 /* arrow */
-
-.arrow-e {
-	border-style: dashed;
-	border-color: transparent;
-	border-width: 0.53em;
-	display: -moz-inline-box;
-	display: inline-block;
-	font-size: 0.8em;
-	height: 0;
-	line-height: 0;
-	position: relative;
-	vertical-align: middle;
-	width: 0;
-
-	border-left-width: 1em;
-	border-left-style: solid;
-	border-left-color: #0099ff;
-	left: 0.25em;
-	top: -2px;
-	margin: 2px 3px;
+ .arrow-e {
+    border-style: dashed;
+    border-color: transparent;
+    border-width: 0.53em;
+    display: -moz-inline-box;
+    display: inline-block;
+    font-size: 0.8em;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 0;
+    border-left-width: 1em;
+    border-left-style: solid;
+    border-left-color: #0099ff;
+    left: 0.25em;
+    top: -2px;
+    margin: 2px 3px;
 }
-
 /* big arrow */
-.arrow {
-	background: url('../images/arrow.png') no-repeat;
-	height: 20px;
-	width: auto;
-	display: inline-block;
-	padding: 5px 0 5px 40px;
-	margin: 20px;
+ .arrow {
+    background: url('../images/arrow.png') no-repeat;
+    height: 20px;
+    width: auto;
+    display: inline-block;
+    padding: 5px 0 5px 40px;
+    margin: 20px;
 }
-
 .arrow:hover {
-	background-position: 0px -30px;
+    background-position: 0px -30px;
 }
-
 /* social icons */
-.social-slide {
-	position: relative;
-	top: -78px;
-	right: -10px;
-	height: 48px;
-	width: 48px;
-	margin: 10px;
-	float: left;
-	-webkit-transition: all ease 0.3s;
-	-moz-transition: all ease 0.3s;
-	-o-transition: all ease 0.3s;
-	-ms-transition: all ease 0.3s;
-	transition: all ease 0.3s;
-	display: inline-block;
-	float: right;
+ .social-slide {
+    position: relative;
+    top: -78px;
+    right: -10px;
+    height: 48px;
+    width: 48px;
+    margin: 10px;
+    float: left;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    display: inline-block;
+    float: right;
 }
 .social-slide:hover {
-	background-position: 0px -48px;
-	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+    background-position: 0px -48px;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.8);
 }
-.facebook { background-image: url('../images/facebook.png'); ) }
-.twitter { background-image: url('../images/twitter.png'); ) }
-.google { background-image: url('../images/google.png'); ) }
-.linkedin { background-image: url('../images/linkedin.png'); ) }
-
+.facebook { background-image: url('../images/facebook.png'); }
+.twitter { background-image: url('../images/twitter.png'); }
+.google { background-image: url('../images/google.png'); }
+.linkedin { background-image: url('../images/linkedin.png'); }
