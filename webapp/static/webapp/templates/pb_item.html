@@ -1,3 +1,19 @@
+<script>
+    function magic(){
+        $("tbody > tr:odd").addClass("odd");
+
+        var url = window.location.href;
+        $("#yearSelect option").each(function(){
+            $(this).attr('selected', false);
+            if(url.indexOf($(this).text()) !== -1)
+            {
+                $(this).prop('selected', true).change();
+            }
+        });
+    };
+    setTimeout(magic,100);
+</script>
+
 <div id="top">
     <h3><a href="#">Proris</a><span class="arrow-e"></span><a href="#/pb/{{ year }}">Kategorije</a><span class="arrow-e"></span>{{ its.name }}</h3>
 </div>
