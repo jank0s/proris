@@ -29,6 +29,9 @@ a:hover {
 .left {
     text-align: left;
 }
+#right {
+    text-align: right;
+}
 .container {
     width: 1065px;
     height: 100%;
