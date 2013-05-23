@@ -1,12 +1,30 @@
+<script>
+    function magic(){
+        $("tbody > tr:odd").addClass("odd");
+
+        var url = window.location.href;
+        $("#yearSelect option").each(function(){
+            $(this).attr('selected', false);
+            if(url.indexOf($(this).text()) !== -1)
+            {
+                $(this).prop('selected', true).change();
+            }
+        });
+    };
+    setTimeout(magic,100);
+</script>
+
 <div id="top">
     <h3><a href="#">Proris</a><span class="arrow-e"></span>Kategorije</h3>
 </div>
 <div id="head">
     <h2>Kategorije</h2>
-</div>
-<div id="year">
-    Leto
-    <a href="#/pb/{{ y.year }}" ng-repeat="y in yList"> · {{ y.year }}</a>
+	<div id="year">
+		Leto
+		<select id="yearSelect" onchange="window.open(this.value,'_self');">
+			<option value="#/pb/{{ y.year }}" ng-repeat="y in yList">{{ y.year }}</option>
+		</select>
+	</div>
 </div>
 <div style="clear:both;"></div>
 <div id="visual">
