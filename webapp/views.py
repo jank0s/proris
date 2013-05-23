@@ -20,7 +20,8 @@ def importcsv(request):
                 messages.success(request, "Import was successful")
             except:
                 context = {"form": form}
-                messages.error(request, "Something went wrong. Please check if you uploaded the correct file and that it is encoded in the correct format (UTF-8)")
+                messages.error(request, "Something went wrong. Please check if you uploaded the correct"
+                                        " file and that it is encoded in the correct format (UTF-8)")
         else:
             context = {"form": form}
     else:
@@ -45,7 +46,9 @@ def pb(request, year):
     #calculate sum
     sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
     #query
-    branch_list = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=year).annotate(branch_sum=Sum('categories__items__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
+    branch_list = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=year)
+    branch_list = branch_list.annotate(branch_sum=Sum('categories__items__value'))
+    branch_list = branch_list.values('id', 'name', 'branch_sum').order_by('-branch_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
             for br in branch_list]
@@ -53,26 +56,14 @@ def pb(request, year):
     data = {'list':list, 'sum':sum}
     #return json
     return HttpResponse(json.dumps(data), mimetype='application/json')
-
-def pb(request, year):
-    #calculate sum
-    sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
-    #query
-    branch_list = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=year).annotate(branch_sum=Sum('categories__items__value')).values('id', 'name', 'branch_sum').order_by('-branch_sum')
-    #calculate percentage
-    list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
-            for br in branch_list]
-    #prepare data
-    data = {'list':list, 'sum':sum}
-    #return json
-    return HttpResponse(json.dumps(data), mimetype='application/json')
-
 
 def pb_item(request, year, pb_id):
     #calculate sum
-    sum = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).aggregate(s=Sum('value'))['s']
+    sum = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id)
+    sum = sum.aggregate(s=Sum('value'))['s']
     #query
-    item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id).values('category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
+    item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id)
+    item_list = item_list.values('category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
     #calculate percentage
     list = [{'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100}
             for item in item_list]
@@ -86,7 +77,9 @@ def bug(request, year):
     #calculate sum
     sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
     #query
-    bug_list = BudgetUserGroup.objects.values('name').filter(budgetuser__categories__items__budget_year=year).annotate(group_sum=Sum('budgetuser__categories__items__value')).values('id', 'name', 'group_sum').order_by('-group_sum')
+    bug_list = BudgetUserGroup.objects.values('name').filter(budgetuser__categories__items__budget_year=year)
+    bug_list = bug_list.annotate(group_sum=Sum('budgetuser__categories__items__value'))
+    bug_list = bug_list.values('id', 'name', 'group_sum').order_by('-group_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100}
             for br in bug_list]
@@ -98,9 +91,12 @@ def bug(request, year):
 
 def bug_bu(request, year, bug_id):
     #calculate sum
-    sum = Item.objects.filter(budget_year=year).filter(category__budget_user__group__id=bug_id).aggregate(s=Sum('value'))['s']
+    sum = Item.objects.filter(budget_year=year).filter(category__budget_user__group__id=bug_id)
+    sum = sum.aggregate(s=Sum('value'))['s']
     #query
-    bug_list = BudgetUser.objects.values('name').filter(categories__items__budget_year=year).filter(group__id=bug_id).annotate(group_sum=Sum('categories__items__value')).values('id', 'name', 'group_sum').order_by('-group_sum')
+    bug_list = BudgetUser.objects.values('name').filter(categories__items__budget_year=year).filter(group__id=bug_id)
+    bug_list = bug_list.annotate(group_sum=Sum('categories__items__value'))
+    bug_list = bug_list.values('id', 'name', 'group_sum').order_by('-group_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100}
             for br in bug_list]
@@ -112,13 +108,18 @@ def bug_bu(request, year, bug_id):
 
 def bug_bu_item(request, year, bug_id, bu_id):
     #calculate sum
-    sum = Item.objects.filter(budget_year=year).filter(category__budget_user__group__id=bug_id).filter(category__budget_user_id=bu_id).aggregate(s=Sum('value'))['s']
+    sum = Item.objects.filter(budget_year=year).filter(category__budget_user__group__id=bug_id)
+    sum = sum.filter(category__budget_user_id=bu_id).aggregate(s=Sum('value'))['s']
     #query
-    item_list = Item.objects.filter(budget_year=year).filter(category__budget_user_id=bu_id).filter(category__budget_user__group_id=bug_id).values('id', 'category__name', 'value').order_by('-value')
+    item_list = Item.objects.filter(budget_year=year).filter(category__budget_user_id=bu_id)
+    item_list = item_list.filter(category__budget_user__group_id=bug_id)
+    item_list = item_list.values('id', 'category__name', 'value').order_by('-value')
     #calculate percentage
     list = [{'id': "", 'name': item['category__name'], 'value': item['value'], 'percent': item['value']/sum*100}
             for item in item_list]
     #prepare data
-    data = {'list': list, 'sum': sum, 'bug_name': BudgetUserGroup.objects.get(pk=bug_id).name, 'name': BudgetUser.objects.get(pk=bu_id).name}
+    bug_name = BudgetUserGroup.objects.get(pk=bug_id).name
+    name  = BudgetUser.objects.get(pk=bu_id).name
+    data = {'list': list, 'sum': sum, 'bug_name': bug_name , 'name': name}
     #return json
     return HttpResponse(json.dumps(data), mimetype='application/json')
