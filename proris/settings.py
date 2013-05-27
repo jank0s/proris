@@ -121,7 +121,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     'webapp',
-    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging
