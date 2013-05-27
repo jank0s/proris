@@ -1,24 +1,8 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
-from tastypie.api import Api
-from webapp.resources import BalanceResource, GroupResource
-from webapp.resources import BudgerUserGroupResource, BudgetUserResource
-from webapp.resources import PoliticalBranchResource, ProgrammeResource
-from webapp.resources import CategoryResource, ItemResource
 from webapp import views
 
-v1_api = Api(api_name='v1')
-v1_api.register(BalanceResource())
-v1_api.register(GroupResource())
-v1_api.register(BudgerUserGroupResource())
-v1_api.register(BudgetUserResource())
-v1_api.register(PoliticalBranchResource())
-v1_api.register(ProgrammeResource())
-v1_api.register(CategoryResource())
-v1_api.register(ItemResource())
-
 urlpatterns = patterns('',
-                       url(r'^api/', include(v1_api.urls)),
                        url(r'^$', views.index, name='index'),
 
                        url(r'^year/$', views.year, name='year'),
