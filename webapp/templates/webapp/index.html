@@ -5,14 +5,32 @@
 {% block content %}
     <div class="container">
         <div id="header" >
-			<a href="#"><div class="logo" title="PRORIS"></div></a>		
-			<a href="http://www.linkedin.com/profile/view?id=256085141&trk=hb_tab_pro_top" title="LinkedIn" target="_blank"><div class="social-slide linkedin"></div></a>	
-			<a href="https://plus.google.com/u/0/107682556428991550494/posts" title="Google Plus" target="_blank"><div class="social-slide google"></div></a>	
-			<a href="https://www.facebook.com/pr0ris" title="Facebook" target="_blank"><div class="social-slide facebook"></div></a>	
-			<a href="https://twitter.com/proris2" title="Twitter" target="_blank"><div class="social-slide twitter"></div></a>
+			<a href="#"><div class="logo" title="PRORIS"></div></a>
+			<a href="https://plus.google.com/share?url=http://proris.k0s.si/" title="Google Plus" target="_blank"><div class="social-slide google"></div></a>
+			<a href="http://www.facebook.com/sharer.php?u=http://proris.k0s.si/" title="Facebook" target="_blank"><div class="social-slide facebook"></div></a>
+            <a href="http://twitter.com/intent/tweet?source=sharethiscom&text=Oglej si slovenski proračun&url=http://proris.k0s.si/" title="Twitter" target="_blank"><div class="social-slide twitter"></div></a>
         </div><!-- end header-->
         <div ng-view id="content"></div>
         <div id="footer">
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-like" data-href="http://proris.k0s.si/" data-send="true" data-width="450" data-show-faces="true"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://proris.k0s.si/" data-text="Oglej si slovenski proračun">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <div class="g-plus" data-action="share"></div>
+            <script type="text/javascript">
+                (function() {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+            </script>
         </div><!-- end footer-->
     </div>
 {% endblock %}
