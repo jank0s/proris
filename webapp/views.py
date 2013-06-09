@@ -60,7 +60,7 @@ def pb(request, year):
     ref = ref.values('id', 'branch_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100,
-             'ref': ((ref.get(id=br['id']).get('branch_sum'))-br['branch_sum'])/br['branch_sum']}
+             'ref': (br['branch_sum']-(ref.get(id=br['id']).get('branch_sum')))/(ref.get(id=br['id']).get('branch_sum'))*100}
             for br in branch_list]
     #prepare data
     data = {'list':list, 'sum':sum}
@@ -85,7 +85,7 @@ def pb_item(request, year, pb_id):
     ref = ref.values('category__name', 'item_sum')
     #calculate percentage
     list = [{'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100,
-             'ref': ((ref.get(category__name=item['category__name']).get('item_sum'))-item['item_sum'])/item['item_sum']}
+             'ref': (item['item_sum']-(ref.get(category__name=item['category__name']).get('item_sum')))/(ref.get(category__name=item['category__name']).get('item_sum'))*100}
             for item in item_list]
     #refernce sums
     ref_list = Item.objects.values('budget_year').filter(category__political_branch_id=pb_id)
@@ -117,7 +117,7 @@ def bug(request, year):
     ref = ref.values('id', 'group_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100,
-             'ref': ((ref.get(id=br['id']).get('group_sum'))-br['group_sum'])/br['group_sum']}
+             'ref': (br['group_sum']-(ref.get(id=br['id']).get('group_sum')))/(ref.get(id=br['id']).get('group_sum'))*100}
             for br in bug_list]
     #prepare data
     data = {'list':list, 'sum':sum}
@@ -144,7 +144,7 @@ def bug_bu(request, year, bug_id):
     ref = ref.values('id', 'group_sum')
     #calculate percentage
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100,
-             'ref': ((ref.get(id=br['id']).get('group_sum'))-br['group_sum'])/br['group_sum']}
+             'ref': (br['group_sum']-(ref.get(id=br['id']).get('group_sum')))/(ref.get(id=br['id']).get('group_sum'))*100}
             for br in bug_list]
     #refernce sums
     ref_list = Item.objects.values('budget_year').filter(category__budget_user__group__id=bug_id)
@@ -177,7 +177,7 @@ def bug_bu_item(request, year, bug_id, bu_id):
     ref = ref.values('category__id', 'value')
     #calculate percentage
     list = [{'id': "", 'name': item['category__name'], 'value': item['value'], 'percent': item['value']/sum*100,
-             'ref': ((ref.get(category__id=item['category__id']).get('value'))-item['value'])/item['value']}
+             'ref': (item['value']-(ref.get(category__id=item['category__id']).get('value')))/(ref.get(category__id=item['category__id']).get('value'))*100}
             for item in item_list]
     #refernce sums
     ref_list = Item.objects.values('budget_year').filter(category__budget_user__group__id=bug_id)
