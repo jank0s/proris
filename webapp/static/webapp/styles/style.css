@@ -121,6 +121,16 @@ a:hover {
     border-top: 2px solid #333;
     font-weight:bold;
 }
+
+.barchartdiv {
+	padding-top:60px;
+	padding-left:520px
+}
+
+.piechartdiv {
+	float:left;	
+}
+
 piechart {
     display:none;
     width:997px;

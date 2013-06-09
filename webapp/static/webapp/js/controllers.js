@@ -146,7 +146,7 @@ function BUGBuCtrl($scope, $routeParams, $http) {
         			break;
         		        		
         		var temp = {};
-    	    	temp.label = data.list[i].name;
+        		temp.label = data.list[i].name + " - " + (Math.round(data.list[i].percent * 10) / 10) + " %";
     	    	temp.data = data.list[i].percent;
     	    	datapie.push(temp);
     	    	
@@ -155,11 +155,31 @@ function BUGBuCtrl($scope, $routeParams, $http) {
 		}
 	    
         var temp = {};
-        temp.label = "Ostali";
+        temp.label = "Ostali - " + (Math.round((100 - count) * 10) / 10) + " %";
         temp.data = 100 - count;
         datapie.push(temp);
 	    
+        var databar = [];
+        for (var i = 0; i < data.ref.length; i++){
+        	
+        	var temp = {};
+        	
+        	if (data.ref[i].year == $routeParams.year)
+        		temp.color = "#BED4E2";
+        	else
+        		temp.color = "#E9BD5E";
+        	
+        	var tempData = [];
+        	tempData.push(data.ref[i].year);
+        	tempData.push(data.ref[i].value);
+        	temp.data = [ tempData ];
+        	temp.label = Math.round(data.ref[i].value).formatMoney(0, "") + " €";
+        	
+        	databar.push(temp);
+        }
+	    
 	    $scope.pie = datapie;
+	    $scope.bar =  databar;
     });
 
     $http.get('year/').success(function(data) {
@@ -167,6 +187,7 @@ function BUGBuCtrl($scope, $routeParams, $http) {
     });
     
     $scope.pie = null;
+    $scope.bar = null;
 	$scope.year = $routeParams.year;
 	$scope.bugid = $routeParams.bugid;
 }
@@ -184,7 +205,7 @@ function BUGBuItemCtrl($scope, $routeParams, $http) {
         			break;
         		
         		var temp = {};
-    	    	temp.label = data.list[i].name;
+        		temp.label = data.list[i].name + " - " + (Math.round(data.list[i].percent * 10) / 10) + " %";
     	    	temp.data = data.list[i].percent;
     	    	datapie.push(temp);
     	    	
@@ -193,11 +214,31 @@ function BUGBuItemCtrl($scope, $routeParams, $http) {
 		}
 	    
         var temp = {};
-        temp.label = "Ostali";
+        temp.label = "Ostali - " + (Math.round((100 - count) * 10) / 10) + " %";
         temp.data = 100 - count;
         datapie.push(temp);
         
+        var databar = [];
+        for (var i = 0; i < data.ref.length; i++){
+        	
+        	var temp = {};
+        	
+        	if (data.ref[i].year == $routeParams.year)
+        		temp.color = "#BED4E2";
+        	else
+        		temp.color = "#E9BD5E";
+        	
+        	var tempData = [];
+        	tempData.push(data.ref[i].year);
+        	tempData.push(data.ref[i].value);
+        	temp.data = [ tempData ];
+        	temp.label = Math.round(data.ref[i].value).formatMoney(0, "") + " €";
+        	
+        	databar.push(temp);
+        }
+	    
 	    $scope.pie = datapie;
+	    $scope.bar =  databar;
     });
 
     $http.get('year/').success(function(data) {
@@ -205,6 +246,7 @@ function BUGBuItemCtrl($scope, $routeParams, $http) {
     });
     
     $scope.pie = null;
+    $scope.bar = null;
     $scope.year = $routeParams.year;
     $scope.bugid = $routeParams.bugid;
     $scope.buid = $routeParams.buid;

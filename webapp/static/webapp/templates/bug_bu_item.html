@@ -30,8 +30,12 @@
 <div id="visual">
     <div>
 	    <div ng-controller='BUGBuItemCtrl'>
-	        <piechart ng-model='pie'>        
-	        </piechart>
+	        <smallpiechart ng-model='pie' class="piechartdiv">        
+	        </smallpiechart>
+		    <div class="barchartdiv">
+		    	<barchart ng-model='bar' >
+		        </barchart>
+		    </div>
 	    </div>
 	</div>
 </div>
