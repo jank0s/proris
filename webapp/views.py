@@ -43,7 +43,10 @@ def year(request):
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
 def pb(request, year):
-    ref_year=2013
+    if (Item.objects.values('budget_year').distinct().filter(budget_year=(int(year)-1)).exists()):
+        ref_year=int(year)-1
+    else:
+        ref_year=year
     #calculate sum
     sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
     #query
