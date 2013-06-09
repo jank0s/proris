@@ -73,8 +73,7 @@ def pb_item(request, year, pb_id):
     sum = sum.aggregate(s=Sum('value'))['s']
     #query
     item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id)
-    item_list = item_list.values('category__id', 'category__name').annotate(item_sum=Sum('value'))
-    item_list = item_list.order_by().order_by("-item_sum")
+    item_list = item_list.values('category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
     #reference year
     if (Item.objects.values('budget_year').distinct().filter(budget_year=(int(year)-1)).exists()):
         ref_year=int(year)-1
@@ -82,11 +81,11 @@ def pb_item(request, year, pb_id):
         ref_year=year
     #ref_data
     ref = Item.objects.filter(budget_year=ref_year).filter(category__political_branch_id=pb_id)
-    ref = ref.values('category__id', 'category__name').annotate(item_sum=Sum('value')).order_by()
-    ref = ref.values('category__id', 'item_sum')
+    ref = ref.values('category__name').annotate(item_sum=Sum('value')).order_by()
+    ref = ref.values('category__name', 'item_sum')
     #calculate percentage
     list = [{'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100,
-             'ref': ((ref.get(category__id=item['category__id']).get('item_sum'))-item['item_sum'])/item['item_sum']}
+             'ref': ((ref.get(category__name=item['category__name']).get('item_sum'))-item['item_sum'])/item['item_sum']}
             for item in item_list]
     #refernce sums
     ref_list = Item.objects.values('budget_year').filter(category__political_branch_id=pb_id)
