@@ -32,6 +32,15 @@ a:hover {
 #right {
     text-align: right;
 }
+.same {
+    color: black;
+}
+.up {
+    color: green;
+}
+.down {
+    color: red;
+}
 .container {
     width: 1065px;
     height: 100%;

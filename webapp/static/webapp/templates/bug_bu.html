@@ -49,7 +49,7 @@
         <td><a href="#/bug/{{year}}/{{bugid}}/{{branch.id}}">{{branch.name}}</a></td>
         <td id="right"> {{ branch.value  | number:0 }} €</td>
         <td id="right"> {{ branch.percent | number:2 }} %</td>
-        <td id="right"> {{ branch.ref | number:2 }} %</td>
+        <td id="right" class="{{ branch.ref>0 && 'up' || (branch.ref==0 && 'same' || 'down') }}"> {{ branch.ref | number:2 }} %</td>
     </tr>
     </tbody>
     <tfoot>
