@@ -87,7 +87,7 @@ def pb_item(request, year, pb_id):
     list = [{'name': item['category__name'], 'value': item['item_sum'], 'percent': item['item_sum']/sum*100,
              'ref': ((ref.get(category__id=item['category__id']).get('item_sum'))-item['item_sum'])/item['item_sum']}
             for item in item_list]
-    #refernce branches
+    #refernce sums
     ref_list = Item.objects.values('budget_year').filter(category__political_branch_id=pb_id)
     ref_list.group_by=['budget_year']
     ref_list = ref_list.annotate(item_sum=Sum('value'))
@@ -146,8 +146,14 @@ def bug_bu(request, year, bug_id):
     list = [{'id': br['id'], 'name': br['name'], 'value': br['group_sum'], 'percent': br['group_sum']/sum*100,
              'ref': ((ref.get(id=br['id']).get('group_sum'))-br['group_sum'])/br['group_sum']}
             for br in bug_list]
+    #refernce sums
+    ref_list = Item.objects.values('budget_year').filter(category__budget_user__group__id=bug_id)
+    ref_list.group_by=['budget_year']
+    ref_list = ref_list.annotate(item_sum=Sum('value'))
+    rf_list = [{'year': rf['budget_year'], 'value': rf['item_sum']}
+               for rf in ref_list]
     #prepare data
-    data = {'list': list, 'sum': sum, 'name': BudgetUserGroup.objects.get(pk=bug_id).name}
+    data = {'list': list, 'sum': sum, 'name': BudgetUserGroup.objects.get(pk=bug_id).name, 'ref': rf_list}
     #return json
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
@@ -165,7 +171,7 @@ def bug_bu_item(request, year, bug_id, bu_id):
         ref_year=int(year)-1
     else:
         ref_year=year
-        #ref_data
+    #ref_data
     ref = Item.objects.filter(budget_year=ref_year).filter(category__budget_user_id=bu_id)
     ref = ref.filter(category__budget_user__group_id=bug_id)
     ref = ref.values('category__id', 'value')
