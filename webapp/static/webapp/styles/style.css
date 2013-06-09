@@ -126,7 +126,19 @@ piechart {
     width:997px;
     height:350px;
 }
-​ ul.menu {
+
+smallpiechart {
+    display:none;
+    width:497px;
+    height:350px;
+}
+
+barchart {
+    display:none;
+    width:450px;
+    height:230px;
+}
+��� ul.menu {
     list-style: none;
 }
 .menu > li {
