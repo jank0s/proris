@@ -73,7 +73,8 @@ def pb_item(request, year, pb_id):
     sum = sum.aggregate(s=Sum('value'))['s']
     #query
     item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id)
-    item_list = item_list.values('category__id', 'category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
+    item_list = item_list.values('category__id', 'category__name').annotate(item_sum=Sum('value'))
+    item_list = item_list.order_by().order_by("-item_sum")
     #reference year
     if (Item.objects.values('budget_year').distinct().filter(budget_year=(int(year)-1)).exists()):
         ref_year=int(year)-1
@@ -180,7 +181,8 @@ def bug_bu_item(request, year, bug_id, bu_id):
              'ref': ((ref.get(category__id=item['category__id']).get('value'))-item['value'])/item['value']}
             for item in item_list]
     #refernce sums
-    ref_list = Item.objects.values('budget_year').filter(category__budget_user__group__id=bug_id).filter(category__budget_user_id=bu_id)
+    ref_list = Item.objects.values('budget_year').filter(category__budget_user__group__id=bug_id)
+    ref_list = ref_list.filter(category__budget_user_id=bu_id)
     ref_list.group_by=['budget_year']
     ref_list = ref_list.annotate(item_sum=Sum('value'))
     rf_list = [{'year': rf['budget_year'], 'value': rf['item_sum']}
