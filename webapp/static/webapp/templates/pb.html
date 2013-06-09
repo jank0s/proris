@@ -41,6 +41,7 @@
             <th>Postavka</th>
             <th width="15%">Izdatek</th>
             <th width="10%">Delež</th>
+            <th width="10%">Primerjava</th>
         </tr>
     </thead>
     <tbody>
@@ -48,12 +49,14 @@
             <td><a href="#/pb/{{year}}/{{branch.id}}">{{branch.name}}</a></td>
             <td id="right"> {{ branch.value  | number:0 }} €</td>
             <td id="right"> {{ branch.percent | number:2 }} %</td>
+            <td id="right"> {{ branch.ref | number:2 }} %</td>
         </tr>
     </tbody>
     <tfoot>
     <tr id="sum">
         <td>Skupaj:</td>
         <td id="right">{{ its.sum | number:0 }} €</td>
+        <td></td>
         <td></td>
     </tr>
     </tfoot>

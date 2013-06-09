@@ -43,14 +43,20 @@ def year(request):
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
 def pb(request, year):
+    ref_year=2013
     #calculate sum
     sum = Item.objects.filter(budget_year=year).aggregate(s=Sum('value'))['s']
     #query
     branch_list = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=year)
     branch_list = branch_list.annotate(branch_sum=Sum('categories__items__value'))
     branch_list = branch_list.values('id', 'name', 'branch_sum').order_by('-branch_sum')
+    #ref_data
+    ref = PoliticalBranch.objects.values('name').filter(categories__items__budget_year=ref_year)
+    ref = ref.annotate(branch_sum=Sum('categories__items__value'))
+    ref = ref.values('id', 'branch_sum')
     #calculate percentage
-    list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100}
+    list = [{'id': br['id'], 'name': br['name'], 'value': br['branch_sum'], 'percent': br['branch_sum']/sum*100,
+             'ref': ((ref.get(id=br['id']).get('branch_sum'))-br['branch_sum'])/br['branch_sum']}
             for br in branch_list]
     #prepare data
     data = {'list':list, 'sum':sum}
