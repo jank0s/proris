@@ -179,9 +179,15 @@ def bug_bu_item(request, year, bug_id, bu_id):
     list = [{'id': "", 'name': item['category__name'], 'value': item['value'], 'percent': item['value']/sum*100,
              'ref': ((ref.get(category__id=item['category__id']).get('value'))-item['value'])/item['value']}
             for item in item_list]
+    #refernce sums
+    ref_list = Item.objects.values('budget_year').filter(category__budget_user__group__id=bug_id).filter(category__budget_user_id=bu_id)
+    ref_list.group_by=['budget_year']
+    ref_list = ref_list.annotate(item_sum=Sum('value'))
+    rf_list = [{'year': rf['budget_year'], 'value': rf['item_sum']}
+               for rf in ref_list]
     #prepare data
     bug_name = BudgetUserGroup.objects.get(pk=bug_id).name
     name  = BudgetUser.objects.get(pk=bu_id).name
-    data = {'list': list, 'sum': sum, 'bug_name': bug_name , 'name': name}
+    data = {'list': list, 'sum': sum, 'bug_name': bug_name , 'name': name, 'ref': rf_list}
     #return json
     return HttpResponse(json.dumps(data), mimetype='application/json')
