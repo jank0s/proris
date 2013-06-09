@@ -12,25 +12,40 @@
         </div><!-- end header-->
         <div ng-view id="content"></div>
         <div id="footer">
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-            <div class="fb-like" data-href="http://proris.k0s.si/" data-send="true" data-width="450" data-show-faces="true"></div>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://proris.k0s.si/" data-text="Oglej si slovenski proračun">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            <div class="g-plus" data-action="share"></div>
-            <script type="text/javascript">
-                (function() {
-                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                    po.src = 'https://apis.google.com/js/plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                })();
-            </script>
+
+            <div class="social-single">
+
+                <!-- Facebook's Like Button -->
+                <div id="likebutton">
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-like" data-href="http://proris.k0s.si" data-send="true" data-width="200" data-show-faces="true" data-font="verdana"></div>
+                </div>
+
+                <!-- Google Plus One Button -->
+                <div id="plusone"><script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+                    <div class="g-plus" data-action="share"></div>
+                    <script type="text/javascript">
+                        (function() {
+                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                            po.src = 'https://apis.google.com/js/plusone.js';
+                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                        })();
+                    </script>
+                </div>
+
+                <!-- Twitter's Tweet Button -->
+                <div id="twitterbutton"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+
+            </div><br />
+
+        </div><br />
         </div><!-- end footer-->
     </div>
 {% endblock %}
