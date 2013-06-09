@@ -10,10 +10,9 @@
                 $(this).prop('selected', true).change();
             }
         });
+        FB.XFBML.parse();
     };
-    setTimeout(magic,100);
 </script>
-
 <div id="top">
     <h3><a href="#">Proris</a><span class="arrow-e"></span>Kategorije</h3>
 </div>
@@ -52,15 +51,7 @@
             <td id="right"> {{ branch.percent | number:2 }} %</td>
             <td id="right" class="{{ branch.ref>0 && 'up' || (branch.ref==0 && 'same' || 'down') }}"> {{ branch.ref | number:2 }} %</td>
             <td id="right">
-                <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
-                <div class="fb-like" data-href="http://proris.k0s.si/#/pb/{{year}}/{{branch.id}}" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>
+                <fblike><div class="fb-like" data-href="http://proris.k0s.si/#/pb/{{year}}/{{branch.id}}" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div></fblike>
             </td>
         </tr>
     </tbody>
@@ -74,3 +65,5 @@
     </tr>
     </tfoot>
 </table>
+
+
