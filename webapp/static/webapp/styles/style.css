@@ -101,6 +101,9 @@ a:hover {
     padding: 5px 0;
     background: -webkit-gradient(linear, left top, left bottom, from(#F1F1F1), to(#D8D8D8));
 }
+#footer {
+    padding: 2em;
+}
 .odd {
     background: rgba(0, 0, 0, 0.10);
 }
@@ -181,4 +184,27 @@ piechart {
 .facebook { background-image: url('../images/facebook.png'); }
 .twitter { background-image: url('../images/twitter.png'); }
 .google { background-image: url('../images/google.png'); }
-.linkedin { background-image: url('../images/linkedin.png'); }
+
+.social-single {
+    margin: 5px 0px 10px 0px;
+}
+
+#twitterbutton, #likebutton, #stumblebutton, #plusone, #linkedinshare {
+    float: right;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#likebutton {
+    margin-top:0px;
+}
+
+#plusone {
+    margin-left:60px;
+    margin-top:0px;
+    width: 200px;
+}
+
+#twitterbutton {
+    width: 50px;
+}
