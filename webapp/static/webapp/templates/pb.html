@@ -12,6 +12,7 @@
         });
         FB.XFBML.parse();
     };
+    setTimeout(magic,100);
 </script>
 <div id="top">
     <h3><a href="#">Proris</a><span class="arrow-e"></span>Kategorije</h3>
@@ -51,7 +52,7 @@
             <td id="right"> {{ branch.percent | number:2 }} %</td>
             <td id="right" class="{{ branch.ref>0 && 'up' || (branch.ref==0 && 'same' || 'down') }}"> {{ branch.ref | number:2 }} %</td>
             <td id="right">
-                <fblike><div class="fb-like" data-href="http://proris.k0s.si/#/pb/{{year}}/{{branch.id}}" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div></fblike>
+                <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fproris.k0s.si%2F%23%2Fpb%2F{{year}}%2F{{branch.id}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=verdana&amp;colorscheme=light" allowtransparency="true" style="border:medium none; overflow: hidden; width: 80px; height: 21px;" frameborder="0" scrolling="no"></iframe>
             </td>
         </tr>
     </tbody>
@@ -65,5 +66,3 @@
     </tr>
     </tfoot>
 </table>
-
-
