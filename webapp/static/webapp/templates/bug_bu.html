@@ -46,6 +46,7 @@
         <th width="15%">Izdatek</th>
         <th width="10%">Delež</th>
         <th width="10%">Primerjava</th>
+        <th width="10%">Like</th>
     </tr>
     </thead>
     <tbody>
@@ -54,12 +55,16 @@
         <td id="right"> {{ branch.value  | number:0 }} €</td>
         <td id="right"> {{ branch.percent | number:2 }} %</td>
         <td id="right" class="{{ branch.ref>0 && 'up' || (branch.ref==0 && 'same' || 'down') }}"> {{ branch.ref | number:2 }} %</td>
+        <td id="right">
+            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fproris.k0s.si%2F%23%2Fbug%2F{{year}}%2F{{bugid}}%2F{{branch.id}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=verdana&amp;colorscheme=light" allowtransparency="true" style="border:medium none; overflow: hidden; width: 80px; height: 21px;" frameborder="0" scrolling="no"></iframe>
+        </td>
     </tr>
     </tbody>
     <tfoot>
     <tr id="sum">
         <td>Skupaj:</td>
         <td id="right">{{ its.sum | number:0 }} €</td>
+        <td></td>
         <td></td>
         <td></td>
     </tr>

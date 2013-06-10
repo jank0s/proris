@@ -74,6 +74,7 @@ def pb_item(request, year, pb_id):
     #query
     item_list = Item.objects.filter(budget_year=year).filter(category__political_branch_id=pb_id)
     item_list = item_list.values('category__name').annotate(item_sum=Sum('value')).order_by().order_by("-item_sum")
+    item_list = item_list.values( 'category__name', 'item_sum')
     #reference year
     if (Item.objects.values('budget_year').distinct().filter(budget_year=(int(year)-1)).exists()):
         ref_year=int(year)-1
